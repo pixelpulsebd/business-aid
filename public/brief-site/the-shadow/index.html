@@ -66,10 +66,29 @@ section.pri{border:2px solid var(--brass)}
 .phases{display:flex;flex-wrap:wrap;gap:6px}
 .phases a{font-size:13.5px;text-decoration:none;color:var(--navy);background:var(--chip);padding:3px 10px;border-radius:999px}
 .phases a span{font-family:var(--f-mono);color:var(--brass);margin-right:4px}
-.sticky{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:10px 14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.bar{flex:1 1 160px;height:6px;background:var(--chip);border-radius:3px;overflow:hidden}
+.sticky{position:sticky;top:max(8px,env(safe-area-inset-top,0px));z-index:20;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;display:grid;gap:10px;box-shadow:0 6px 22px rgba(24,45,40,.08)}
+.sticky-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}
+.current-segment{display:grid;gap:2px;min-width:0}
+.sticky-kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--brass);text-transform:uppercase}
+#currentSegment{font-size:15px;line-height:1.35;font-weight:600;color:var(--ink);overflow-wrap:anywhere}
+#segmentAnswerCount{font-size:12px;color:var(--muted)}
+.overall-progress{display:grid;justify-items:end;gap:1px;flex:none}
+#pc{font-family:var(--f-mono);font-size:18px;line-height:1.2;color:var(--navy);font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.overall-progress span{font-size:11px;color:var(--muted);white-space:nowrap}
+.sticky-bottom{display:grid;grid-template-columns:minmax(60px,1fr) auto;gap:12px;align-items:center}
+.bar{height:7px;background:var(--chip);border-radius:99px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:var(--brass);transition:width .25s}
-#pc{font-family:var(--f-mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sticky-nav{display:flex;gap:7px;align-items:center}
+.sticky-nav button{font-size:13px;line-height:1.2;padding:8px 11px;white-space:nowrap}
+.sticky-nav button.primary{background:var(--navy);color:var(--sheet);border-color:var(--navy)}
+.segment{display:grid;gap:14px;min-width:0}
+.segment-context{padding:4px 2px 12px;border-bottom:1px solid var(--rule)}
+.segment-context h3{font-size:23px}
+.segment-context p{font-size:14px}
+.segment>section{scroll-margin-top:150px}
+#send{scroll-margin-top:170px}
+@media(max-width:560px){.sticky{top:max(4px,env(safe-area-inset-top,0px));padding:10px;gap:8px}.sticky-head{align-items:flex-start}.sticky-bottom{grid-template-columns:1fr;gap:8px}.sticky-nav{display:grid;grid-template-columns:1fr 1fr}.sticky-nav button{padding:8px 6px;font-size:12px}#currentSegment{font-size:13px}#pc{font-size:16px}.segment-context h3{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.bar i{transition:none}}
 .sec-why{font-size:14.5px;color:var(--muted);max-width:66ch}
 .q{border-top:1px dashed var(--rule);padding-top:14px;display:grid;gap:8px}
 .q.first{border-top:0;padding-top:0}
@@ -142,7 +161,23 @@ footer .sel{user-select:all}
   <div class="phases" aria-label="কাজের ধাপ"><a href="#roadmap"><span>01</span>Discovery</a><a href="#roadmap"><span>02</span>Brand Strategy</a><a href="#roadmap"><span>03</span>Visual Identity</a><a href="#roadmap"><span>04</span>Social &amp; Google</a><a href="#roadmap"><span>05</span>Website</a><a href="#roadmap"><span>06</span>Business Profile</a><a href="#roadmap"><span>07</span>Story &amp; Video</a><a href="#roadmap"><span>08</span>Campaigns</a><a href="#roadmap"><span>09</span>Loyalty</a><a href="#roadmap"><span>10</span>Measure</a></div>
 </header>
 
-<div class="sticky" role="status" aria-live="polite"><span id="pc">০ / ০ প্রশ্ন</span><div class="bar"><i id="pb"></i></div></div>
+<div class="sticky" role="region" aria-label="প্রশ্নপত্রের অগ্রগতি ও নেভিগেশন">
+  <div class="sticky-head">
+    <div class="current-segment">
+      <span class="sticky-kicker">বর্তমান অংশ · <span id="segmentCounter">০১ / ১৪</span></span>
+      <strong id="currentSegment">প্রথম অংশ প্রস্তুত হচ্ছে…</strong>
+      <span id="segmentAnswerCount">এই অংশে ০ / ০টি উত্তর</span>
+    </div>
+    <div class="overall-progress"><strong id="pc">০ / ৭৯</strong><span>মোট উত্তর সম্পন্ন</span></div>
+  </div>
+  <div class="sticky-bottom">
+    <div class="bar" role="progressbar" aria-label="মোট প্রশ্নের উত্তর" aria-valuemin="0" aria-valuemax="79" aria-valuenow="0"><i id="pb"></i></div>
+    <div class="sticky-nav">
+      <button type="button" id="prevSegment" disabled>← পূর্ববর্তী</button>
+      <button type="button" class="primary" id="nextSegment">পরবর্তী অংশ →</button>
+    </div>
+  </div>
+</div>
 
 <form id="form" class="wrap" novalidate>
   <div class="hp" aria-hidden="true"><label>Website<input type="text" id="hp_website" tabindex="-1" autocomplete="off"></label></div>
@@ -322,17 +357,21 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
 const kinds={"1":"একটা বাছুন","m":"একাধিক বাছতে পারেন","t":"লিখুন","ta":"লিখুন","pal":"১–২টা বাছুন"};
-const form=document.getElementById("form");const QS=[];let secNo=0;
+const form=document.getElementById("form");const QS=[];const SEGMENTS=[];let secNo=0;let activeSegmentIndex=0;
 
 PARTS.forEach(([pk,ptitle,pdesc,pri,secs])=>{
-  const ph=document.createElement("div");ph.className="part";
-  ph.innerHTML=`<span class="k">${esc(pk)}</span><h3>${esc(ptitle)}</h3><p>${esc(pdesc)}</p>`;form.appendChild(ph);
-  secs.forEach(([title,why,qs])=>{secNo++;
+  secs.forEach(([title,why,qs],partSegmentIndex)=>{secNo++;
+    const segment=document.createElement("div");segment.className="segment";segment.hidden=true;
+    const part=document.createElement("div");part.className="part segment-context";
+    part.innerHTML=`<span class="k">${esc(pk)}</span><h3>${esc(ptitle)}</h3>${partSegmentIndex===0&&pdesc?`<p>${esc(pdesc)}</p>`:""}`;
+    segment.appendChild(part);
+
     const sec=document.createElement("section");if(pri)sec.className="pri";
     let h=pri?`<span class="pri-tag">সবচেয়ে গুরুত্বপূর্ণ</span>`:"";
-    h+=`<h2><span class="n">${bn(String(secNo).padStart(2,"0"))}</span>${esc(title)}</h2>`;
+    h+=`<h2 tabindex="-1"><span class="n">${bn(String(secNo).padStart(2,"0"))}</span>${esc(title)}</h2>`;
     if(why)h+=`<p class="sec-why">${esc(why)}</p>`;
-    qs.forEach(([id,t,type,opts,help,req],qi)=>{QS.push({id,t,type,opts,sec:title,req:!!req});
+    const segmentQuestions=[];
+    qs.forEach(([id,t,type,opts,help,req],qi)=>{const question={id,t,type,opts,sec:title,req:!!req};QS.push(question);segmentQuestions.push(question);
       h+=`<div class="q${qi===0?" first":""}"><div class="qh"><span class="qid">${bn(id)}</span><span class="qt">${esc(t)}${req?'<span class="req">*</span>':""}<span class="kind">· ${kinds[type]}</span></span></div>`;
       if(help)h+=`<p class="help">${esc(help)}</p>`;
       if(type==="t"||type==="ta"){const v=esc(st[id]||"");
@@ -350,7 +389,8 @@ PARTS.forEach(([pk,ptitle,pdesc,pri,secs])=>{
       }
       h+=`</div>`;
     });
-    sec.innerHTML=h;form.appendChild(sec);
+    sec.innerHTML=h;segment.appendChild(sec);form.appendChild(segment);
+    SEGMENTS.push({element:segment,part:ptitle,partKey:pk,title,questions:segmentQuestions});
   });
 });
 
@@ -372,11 +412,44 @@ function answerOf(q){
 function summary(){const L=["THE SHADOW · Brand Discovery","জমার সময়: "+new Date().toLocaleString(),""];let cur="";
   QS.forEach(q=>{if(q.sec!==cur){cur=q.sec;L.push("","■ "+cur)}L.push(q.id+" "+q.t+": "+(answerOf(q)||"—"))});return L.join("\n")}
 function answersObj(){const a={};QS.forEach(q=>{a[q.id]={q:q.t,a:answerOf(q)}});return a}
-function refresh(){const d=QS.filter(q=>answerOf(q)).length;
-  document.getElementById("pc").textContent=bn(d)+" / "+bn(QS.length)+" প্রশ্নের উত্তর দেওয়া হয়েছে";
-  document.getElementById("pb").style.width=(d/QS.length*100)+"%";document.getElementById("out").value=summary()}
+function refresh(){
+  const d=QS.filter(q=>answerOf(q)).length;
+  const active=SEGMENTS[activeSegmentIndex];
+  const segmentDone=active.questions.filter(q=>answerOf(q)).length;
+  document.getElementById("pc").textContent=bn(d)+" / "+bn(QS.length);
+  document.getElementById("currentSegment").textContent=active.part+" · "+active.title;
+  document.getElementById("segmentCounter").textContent=bn(activeSegmentIndex+1)+" / "+bn(SEGMENTS.length);
+  document.getElementById("segmentAnswerCount").textContent="এই অংশে "+bn(segmentDone)+" / "+bn(active.questions.length)+"টি উত্তর";
+  const percent=QS.length?d/QS.length*100:0;
+  document.getElementById("pb").style.width=percent+"%";
+  document.querySelector(".bar").setAttribute("aria-valuenow",String(d));
+  document.querySelector(".bar").setAttribute("aria-valuemax",String(QS.length));
+  document.getElementById("prevSegment").disabled=activeSegmentIndex===0;
+  const next=document.getElementById("nextSegment");
+  next.textContent=activeSegmentIndex===SEGMENTS.length-1?"জমা দেওয়ার অংশে যান ↓":"পরবর্তী অংশ →";
+  document.getElementById("out").value=summary();
+}
+function goToSegment(index,scroll=true){
+  activeSegmentIndex=Math.max(0,Math.min(index,SEGMENTS.length-1));
+  SEGMENTS.forEach((segment,i)=>{segment.element.hidden=i!==activeSegmentIndex});
+  refresh();
+  if(scroll){
+    const heading=SEGMENTS[activeSegmentIndex].element.querySelector("h2");
+    const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({top:Math.max(0,form.getBoundingClientRect().top+window.scrollY-145),behavior:reduceMotion?"auto":"smooth"});
+    if(heading)heading.focus({preventScroll:true});
+  }
+}
+const firstIncompleteSegment=SEGMENTS.findIndex(segment=>segment.questions.some(q=>!answerOf(q)));
+activeSegmentIndex=firstIncompleteSegment<0?0:firstIncompleteSegment;
+goToSegment(activeSegmentIndex,false);
+document.getElementById("prevSegment").addEventListener("click",()=>goToSegment(activeSegmentIndex-1));
+document.getElementById("nextSegment").addEventListener("click",()=>{
+  if(activeSegmentIndex<SEGMENTS.length-1)goToSegment(activeSegmentIndex+1);
+  else {document.getElementById("send").scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});document.getElementById("submitBtn").focus({preventScroll:true})}
+});
 form.addEventListener("change",e=>{const el=e.target;
-  if(el.type==="radio"){document.querySelectorAll(`input[name="${el.name}"]`).forEach(r=>{st[r.id]=r.checked})}
+  if(el.type==="radio"){form.querySelectorAll(`input[name="${el.name}"]`).forEach(r=>{st[r.id]=r.checked})}
   else if(el.type==="checkbox"){st[el.id]=el.checked}else return;save();refresh()});
 form.addEventListener("input",e=>{const el=e.target;
   if(el.classList.contains("txt")){st[el.dataset.q]=el.value;el.classList.remove("bad")}
@@ -386,8 +459,14 @@ const msg=document.getElementById("msg"),btn=document.getElementById("submitBtn"
 function say(t,c){msg.textContent=t;msg.className=c||""}
 btn.addEventListener("click",async()=>{
   const missing=QS.filter(q=>q.req&&!answerOf(q));
-  if(missing.length){missing.forEach(q=>document.getElementById("f_"+q.id).classList.add("bad"));
-    document.getElementById("f_"+missing[0].id).focus();say("নাম আর যোগাযোগের নম্বর (৭.১, ৭.২) দিন, তারপর জমা দিন।","err");return}
+  if(missing.length){
+    missing.forEach(q=>document.getElementById("f_"+q.id).classList.add("bad"));
+    const firstMissing=missing[0];
+    const missingSegment=SEGMENTS.findIndex(segment=>segment.questions.includes(firstMissing));
+    if(missingSegment>=0)goToSegment(missingSegment);
+    document.getElementById("f_"+firstMissing.id).focus({preventScroll:true});
+    say("নাম আর যোগাযোগের নম্বর (৭.১, ৭.২) দিন, তারপর জমা দিন।","err");return
+  }
   btn.disabled=true;say("জমা হচ্ছে…");
   const payload={form:FORM_ID,submitted_at:new Date().toISOString(),website:document.getElementById("hp_website").value,answers:answersObj(),summary:summary()};
   try{
