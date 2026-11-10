@@ -6,7 +6,8 @@ export const dynamic = 'force-dynamic';
 
 const MAX_BYTES = 300_000;
 const MAX_ANSWERS = 100;
-const SHEET_TAB = 'the-shadow';
+const ANSWERS_SHEET_TAB = 'the-shadow';
+const SUMMARY_SHEET_TAB = 'the-shadow-summary';
 const ALLOWED_FORM = 'the-shadow-discovery';
 const ALLOWED_HOST = 'brief.thebizaid.com';
 const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
@@ -21,6 +22,19 @@ type GoogleTokenResponse = { access_token?: string; error?: string; error_descri
 type SheetMetadata = {
   properties?: { timeZone?: string };
   sheets?: Array<{ properties?: { sheetId?: number; title?: string } }>;
+};
+type SheetRef = { sheetId: number; title: string };
+type SheetCell = { userEnteredValue?: { stringValue?: string; numberValue?: number } };
+
+type SubmissionRecord = {
+  id: string;
+  form: string;
+  receivedAt: Date;
+  clientTime: string;
+  ip: string;
+  userAgent: string;
+  answers: Answers;
+  summary: string;
 };
 
 function isRecord(value: unknown): value is JsonRecord {
@@ -119,7 +133,8 @@ async function sheetsRequest(url: string, accessToken: string, init: RequestInit
 async function getOrCreateSheet(
   spreadsheetUrl: string,
   accessToken: string,
-): Promise<{ sheetId: number; title: string }> {
+  title: string,
+): Promise<SheetRef> {
   const metadataUrl = new URL(spreadsheetUrl);
   metadataUrl.searchParams.set('fields', 'properties(timeZone),sheets(properties(sheetId,title))');
   const metadataResponse = await sheetsRequest(metadataUrl.toString(), accessToken);
@@ -130,9 +145,9 @@ async function getOrCreateSheet(
   }
 
   const metadata = (await metadataResponse.json()) as SheetMetadata;
-  const existing = metadata.sheets?.find((sheet) => sheet.properties?.title === SHEET_TAB);
+  const existing = metadata.sheets?.find((sheet) => sheet.properties?.title === title);
   if (typeof existing?.properties?.sheetId === 'number') {
-    return { sheetId: existing.properties.sheetId, title: SHEET_TAB };
+    return { sheetId: existing.properties.sheetId, title };
   }
 
   const createResponse = await sheetsRequest(`${spreadsheetUrl}:batchUpdate`, accessToken, {
@@ -141,7 +156,7 @@ async function getOrCreateSheet(
       requests: [{
         addSheet: {
           properties: {
-            title: SHEET_TAB,
+            title,
             gridProperties: { frozenRowCount: 1 },
           },
         },
@@ -154,29 +169,33 @@ async function getOrCreateSheet(
   };
   const createdProperties = createPayload.replies?.[0]?.addSheet?.properties;
   if (!createResponse.ok || typeof createdProperties?.sheetId !== 'number') {
-    // A concurrent first submission may have created the same tab after the metadata lookup.
+    // A concurrent first submission may have created this tab after the metadata lookup.
     if (createPayload.error?.message?.toLowerCase().includes('already exists')) {
       const retryMetadata = await sheetsRequest(metadataUrl.toString(), accessToken);
       if (retryMetadata.ok) {
         const retry = (await retryMetadata.json()) as SheetMetadata;
-        const sheet = retry.sheets?.find((item) => item.properties?.title === SHEET_TAB);
-        if (typeof sheet?.properties?.sheetId === 'number') return { sheetId: sheet.properties.sheetId, title: SHEET_TAB };
+        const sheet = retry.sheets?.find((item) => item.properties?.title === title);
+        if (typeof sheet?.properties?.sheetId === 'number') return { sheetId: sheet.properties.sheetId, title };
       }
     }
-    console.error('Brief sheet creation failed:', createResponse.status, createPayload.error?.message || 'unknown error');
-    throw new Error('Could not create the the-shadow response tab.');
+    console.error(`Brief ${title} sheet creation failed:`, createResponse.status, createPayload.error?.message || 'unknown error');
+    throw new Error(`Could not create the ${title} response tab.`);
   }
-  return { sheetId: createdProperties.sheetId, title: createdProperties.title || SHEET_TAB };
+  return { sheetId: createdProperties.sheetId, title: createdProperties.title || title };
 }
 
-async function readHeader(spreadsheetUrl: string, accessToken: string): Promise<string[]> {
-  const range = `'${SHEET_TAB}'!1:1`;
+async function readHeader(
+  spreadsheetUrl: string,
+  accessToken: string,
+  sheetTab: string,
+): Promise<string[]> {
+  const range = `'${sheetTab}'!1:1`;
   const endpoint = new URL(`${spreadsheetUrl}/values/${encodeURIComponent(range)}`);
   const response = await sheetsRequest(endpoint.toString(), accessToken);
   if (!response.ok) {
     const details = await response.text().catch(() => '');
-    console.error('Brief header read failed:', response.status, details.slice(0, 700));
-    throw new Error('Could not read the the-shadow response headers.');
+    console.error(`Brief ${sheetTab} header read failed:`, response.status, details.slice(0, 700));
+    throw new Error(`Could not read the ${sheetTab} response headers.`);
   }
   const payload = (await response.json()) as { values?: unknown[][] };
   return (payload.values?.[0] ?? []).map((value) => String(value ?? ''));
@@ -185,10 +204,11 @@ async function readHeader(spreadsheetUrl: string, accessToken: string): Promise<
 async function writeHeader(
   spreadsheetUrl: string,
   accessToken: string,
+  sheetTab: string,
   headers: string[],
 ): Promise<void> {
   const lastColumn = columnNumberToLetters(headers.length);
-  const range = `'${SHEET_TAB}'!A1:${lastColumn}1`;
+  const range = `'${sheetTab}'!A1:${lastColumn}1`;
   const endpoint = new URL(`${spreadsheetUrl}/values/${encodeURIComponent(range)}`);
   endpoint.searchParams.set('valueInputOption', 'RAW');
   const response = await sheetsRequest(endpoint.toString(), accessToken, {
@@ -197,85 +217,100 @@ async function writeHeader(
   });
   if (!response.ok) {
     const details = await response.text().catch(() => '');
-    console.error('Brief header update failed:', response.status, details.slice(0, 700));
-    throw new Error('Could not prepare the the-shadow response columns.');
+    console.error(`Brief ${sheetTab} header update failed:`, response.status, details.slice(0, 700));
+    throw new Error(`Could not prepare the ${sheetTab} response columns.`);
   }
 }
 
-async function appendResponse(
+function toSheetCell(value: unknown): SheetCell {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return { userEnteredValue: { numberValue: value } };
+  }
+  if (value === null || value === undefined || value === '') return {};
+  return { userEnteredValue: { stringValue: String(value) } };
+}
+
+function createRow(headers: string[], valuesByHeader: Record<string, unknown>): SheetCell[] {
+  return headers.map((header) => toSheetCell(valuesByHeader[header]));
+}
+
+async function appendSubmission(
   spreadsheetUrl: string,
   accessToken: string,
-  sheetId: number,
-  headers: string[],
-  data: {
-    id: string;
-    form: string;
-    receivedAt: Date;
-    clientTime: string;
-    ip: string;
-    userAgent: string;
-    answers: Answers;
-    summary: string;
-  },
+  answersSheet: SheetRef,
+  summarySheet: SheetRef,
+  answersHeaders: string[],
+  summaryHeaders: string[],
+  data: SubmissionRecord,
 ): Promise<void> {
-  const values = new Array<unknown>(headers.length).fill('');
-  const set = (column: string, value: unknown) => {
-    const index = headers.indexOf(column);
-    if (index >= 0) values[index] = value;
+  const dhakaTimestamp = (data.receivedAt.getTime() + DHAKA_OFFSET_MS) / SHEETS_DAY_MS + 25569;
+  const answerValues: Record<string, unknown> = {
+    Received: dhakaTimestamp,
+    'Submission ID': data.id,
+    Form: data.form,
+    'Client Submitted At': data.clientTime,
+    IP: data.ip,
+    Device: data.userAgent,
+  };
+  Object.entries(data.answers).forEach(([id, answer]) => {
+    answerValues[`${id} ${answer.q}`] = answer.a;
+  });
+
+  const summaryValues: Record<string, unknown> = {
+    Received: dhakaTimestamp,
+    'Submission ID': data.id,
+    Form: data.form,
+    'Client Submitted At': data.clientTime,
+    'Full summary': data.summary,
   };
 
-  const dhakaTimestamp = (data.receivedAt.getTime() + DHAKA_OFFSET_MS) / SHEETS_DAY_MS + 25569;
-  set('Received', dhakaTimestamp);
-  set('Submission ID', data.id);
-  set('Form', data.form);
-  set('Client Submitted At', data.clientTime);
-  set('IP', data.ip);
-  set('Device', data.userAgent);
-  set('Full summary', data.summary);
-  Object.entries(data.answers).forEach(([id, answer]) => set(`${id} ${answer.q}`, answer.a));
-
-  const lastColumn = columnNumberToLetters(headers.length);
-  const appendRange = `'${SHEET_TAB}'!A:${lastColumn}`;
-  const endpoint = new URL(`${spreadsheetUrl}/values/${encodeURIComponent(appendRange)}:append`);
-  endpoint.searchParams.set('valueInputOption', 'RAW');
-  endpoint.searchParams.set('insertDataOption', 'INSERT_ROWS');
-  const appendResponse = await sheetsRequest(endpoint.toString(), accessToken, {
-    method: 'POST',
-    body: JSON.stringify({ majorDimension: 'ROWS', values: [values] }),
-  });
-  if (!appendResponse.ok) {
-    const details = await appendResponse.text().catch(() => '');
-    console.error('Brief response append failed:', appendResponse.status, details.slice(0, 900));
-    throw new Error('Could not save the questionnaire response.');
-  }
-
-  const formattingResponse = await sheetsRequest(`${spreadsheetUrl}:batchUpdate`, accessToken, {
+  // Append both rows in one spreadsheets.batchUpdate call. Google Sheets applies a
+  // batchUpdate atomically, avoiding a saved detail row without its corresponding summary.
+  const response = await sheetsRequest(`${spreadsheetUrl}:batchUpdate`, accessToken, {
     method: 'POST',
     body: JSON.stringify({
       requests: [
-        { updateSpreadsheetProperties: { properties: { timeZone: 'Asia/Dhaka' }, fields: 'timeZone' } },
         {
+          appendCells: {
+            sheetId: answersSheet.sheetId,
+            rows: [{ values: createRow(answersHeaders, answerValues) }],
+            fields: 'userEnteredValue',
+          },
+        },
+        {
+          appendCells: {
+            sheetId: summarySheet.sheetId,
+            rows: [{ values: createRow(summaryHeaders, summaryValues) }],
+            fields: 'userEnteredValue',
+          },
+        },
+        {
+          updateSpreadsheetProperties: {
+            properties: { timeZone: 'Asia/Dhaka' },
+            fields: 'timeZone',
+          },
+        },
+        ...[answersSheet, summarySheet].map((sheet) => ({
           repeatCell: {
-            range: { sheetId, startRowIndex: 0, endRowIndex: 1, startColumnIndex: 0, endColumnIndex: headers.length },
+            range: { sheetId: sheet.sheetId, startRowIndex: 0, endRowIndex: 1 },
             cell: { userEnteredFormat: { textFormat: { bold: true }, wrapStrategy: 'WRAP' } },
             fields: 'userEnteredFormat.textFormat.bold,userEnteredFormat.wrapStrategy',
           },
-        },
-        {
+        })),
+        ...[answersSheet, summarySheet].map((sheet) => ({
           repeatCell: {
-            range: { sheetId, startRowIndex: 1, startColumnIndex: Math.max(0, headers.indexOf('Received')), endColumnIndex: Math.max(1, headers.indexOf('Received') + 1) },
+            range: { sheetId: sheet.sheetId, startRowIndex: 1, startColumnIndex: 0, endColumnIndex: 1 },
             cell: { userEnteredFormat: { numberFormat: { type: 'DATE_TIME', pattern: 'yyyy-mm-dd hh:mm:ss AM/PM' } } },
             fields: 'userEnteredFormat.numberFormat',
           },
-        },
+        })),
       ],
     }),
   });
-  if (!formattingResponse.ok) {
-    const details = await formattingResponse.text().catch(() => '');
-    console.error('Brief sheet formatting failed:', formattingResponse.status, details.slice(0, 700));
-    // The response is already safely appended; formatting failure should not cause the browser
-    // to retry and accidentally create a duplicate row.
+  if (!response.ok) {
+    const details = await response.text().catch(() => '');
+    console.error('Brief response and summary append failed:', response.status, details.slice(0, 900));
+    throw new Error('Could not save the questionnaire response and summary.');
   }
 }
 
@@ -317,7 +352,7 @@ export async function POST(request: Request): Promise<Response> {
 
   const receivedAt = new Date();
   const id = `${receivedAt.toISOString().replace(/[-:T]/g, '').slice(0, 14)}-${randomBytes(4).toString('hex')}`;
-  const record = {
+  const record: SubmissionRecord = {
     id,
     form: ALLOWED_FORM,
     receivedAt,
@@ -331,19 +366,49 @@ export async function POST(request: Request): Promise<Response> {
   try {
     const accessToken = await getGoogleAccessToken();
     const spreadsheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}`;
-    const sheet = await getOrCreateSheet(spreadsheetUrl, accessToken);
-    const existingHeaders = await readHeader(spreadsheetUrl, accessToken);
-    const requiredHeaders = [
+    const [answersSheet, summarySheet] = await Promise.all([
+      getOrCreateSheet(spreadsheetUrl, accessToken, ANSWERS_SHEET_TAB),
+      getOrCreateSheet(spreadsheetUrl, accessToken, SUMMARY_SHEET_TAB),
+    ]);
+
+    const [existingAnswerHeaders, existingSummaryHeaders] = await Promise.all([
+      readHeader(spreadsheetUrl, accessToken, ANSWERS_SHEET_TAB),
+      readHeader(spreadsheetUrl, accessToken, SUMMARY_SHEET_TAB),
+    ]);
+
+    const requiredAnswerHeaders = [
       'Received', 'Submission ID', 'Form', 'Client Submitted At', 'IP', 'Device',
       ...Object.entries(answers).map(([questionId, answer]) => `${questionId} ${answer.q}`),
-      'Full summary',
     ];
-    const headers = [...existingHeaders];
-    requiredHeaders.forEach((header) => { if (!headers.includes(header)) headers.push(header); });
-    if (headers.length !== existingHeaders.length || existingHeaders.length === 0) {
-      await writeHeader(spreadsheetUrl, accessToken, headers);
+    const answerHeaders = [...existingAnswerHeaders];
+    requiredAnswerHeaders.forEach((header) => {
+      if (!answerHeaders.includes(header)) answerHeaders.push(header);
+    });
+
+    const requiredSummaryHeaders = [
+      'Received', 'Submission ID', 'Form', 'Client Submitted At', 'Full summary',
+    ];
+    const summaryHeaders = [...existingSummaryHeaders];
+    requiredSummaryHeaders.forEach((header) => {
+      if (!summaryHeaders.includes(header)) summaryHeaders.push(header);
+    });
+
+    if (answerHeaders.length !== existingAnswerHeaders.length || existingAnswerHeaders.length === 0) {
+      await writeHeader(spreadsheetUrl, accessToken, ANSWERS_SHEET_TAB, answerHeaders);
     }
-    await appendResponse(spreadsheetUrl, accessToken, sheet.sheetId, headers, record);
+    if (summaryHeaders.length !== existingSummaryHeaders.length || existingSummaryHeaders.length === 0) {
+      await writeHeader(spreadsheetUrl, accessToken, SUMMARY_SHEET_TAB, summaryHeaders);
+    }
+
+    await appendSubmission(
+      spreadsheetUrl,
+      accessToken,
+      answersSheet,
+      summarySheet,
+      answerHeaders,
+      summaryHeaders,
+      record,
+    );
     return json({ ok: true, id });
   } catch (error) {
     console.error('Brief submission failed:', error instanceof Error ? error.message : 'Unknown error');

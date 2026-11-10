@@ -27,7 +27,7 @@ The The Shadow discovery brief from the companion `brief-thebizaid` project is n
 - The questionnaire is divided into 14 guided segments, with persistent progress, answered-question counts, and Previous/Next navigation.
 - `docs/brief/README.md` contains the questionnaire and deployment notes.
 
-Both forms use `GOOGLE_SHEETS_SPREADSHEET_ID`. Main-site enquiries continue to use the existing `Enquiries` tab; The Shadow responses use a separate `the-shadow` tab in the same spreadsheet file. The tab is created automatically when the first valid questionnaire response arrives. No separate Apps Script deployment or Brief-specific webhook secret is needed. For deployment, add `brief.thebizaid.com` to the **same Vercel project** as `thebizaid.com` and configure the `brief` DNS record using the target Vercel displays. Follow [`docs/brief/README.md`](docs/brief/README.md) for the complete setup and test checklist. Do not deploy the old Brief folder as a separate project.
+Both forms use `GOOGLE_SHEETS_SPREADSHEET_ID`. Main-site enquiries continue to use the existing `Enquiries` tab; The Shadow detailed answers use the `the-shadow` tab, while the response summary is stored separately in `the-shadow-summary`. Both tabs are created automatically when the first valid questionnaire response arrives. No separate Apps Script deployment or Brief-specific webhook secret is needed. For deployment, add `brief.thebizaid.com` to the **same Vercel project** as `thebizaid.com` and configure the `brief` DNS record using the target Vercel displays. Follow [`docs/brief/README.md`](docs/brief/README.md) for the complete setup and test checklist. Do not deploy the old Brief folder as a separate project.
 
 ## Run locally
 

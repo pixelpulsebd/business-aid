@@ -29,9 +29,7 @@ The root of `brief.thebizaid.com` redirects to `https://thebizaid.com`. In local
 
 ## Response spreadsheet
 
-The Shadow responses are written directly through the Google Sheets API into the **same spreadsheet file** used by the main website enquiries. The destination is a separate tab named exactly **`the-shadow`**; the existing `Enquiries` tab and its column layout are not modified.
-
-The `the-shadow` tab is created automatically the first time a valid questionnaire submission is received if it does not already exist. It contains one row per submission, with submission metadata, one column per question, and a full-text summary column. The same service account already used by the enquiry form must have Editor access to the spreadsheet.
+The Shadow responses are written directly through the Google Sheets API into the **same spreadsheet file** used by the main website enquiries. Two dedicated tabs are used: **`the-shadow`** stores submission metadata and one column per question; **`the-shadow-summary`** stores one compact row per submission with metadata and the full-text response summary. The existing `Enquiries` tab and its column layout are not modified. Both The Shadow tabs are created automatically when the first valid questionnaire submission is received if they do not already exist. The same service account already used by the enquiry form must have Editor access to the spreadsheet. The detail row and its summary row are appended together in one Google Sheets batch update. Historical summaries already stored in the older `Full summary` column are left untouched; new submissions write summaries only to `the-shadow-summary`.
 
 No separate spreadsheet, Google Apps Script deployment, webhook URL, or additional secret is required for The Shadow questionnaire. The old `SHEET_WEBHOOK_URL` and `SHEET_TOKEN` variables are no longer used by this version.
 
@@ -43,5 +41,5 @@ No separate spreadsheet, Google Apps Script deployment, webhook URL, or addition
 - The 14 segments navigate forward and backward without losing answers, and the sticky status shows current segment and answered count out of 79.
 - Next on the final segment opens the final submit page; Previous returns to the final segment.
 - The success page appears only after the API confirms a successful save and exposes the website, WhatsApp, and email links.
-- A test submission creates a row in the `the-shadow` tab in the same spreadsheet file as `Enquiries`.
+- A test submission creates one detailed row in `the-shadow` and one summary row in `the-shadow-summary`, both in the same spreadsheet file as `Enquiries`.
 - Confirm that the existing `Enquiries` tab continues to receive main-site enquiries normally.
