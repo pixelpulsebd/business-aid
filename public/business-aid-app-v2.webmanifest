@@ -1,0 +1,31 @@
+{
+  "id": "/",
+  "name": "Business Aid | Where business gets better",
+  "short_name": "Business Aid",
+  "description": "E-commerce growth and legal support under one roof.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F8FBFA",
+  "theme_color": "#3F8B84",
+  "icons": [
+    {
+      "src": "/business-aid-app-icon-192-v3.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/business-aid-app-icon-512-v3.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/business-aid-app-icon-512-v3-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

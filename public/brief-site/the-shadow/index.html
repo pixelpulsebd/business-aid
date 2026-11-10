@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>The Shadow Brand Discovery</title>
+<link rel="icon" href="/the-shadow/business-aid-logo.webp">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: Business Aid client brief — one reading column; Part 1 (brand core) set apart as priority; roadmap as numbered phases.
+   Brand: Business Aid teal + slate from the logo, Poppins (logo wordmark feel) + Hind Siliguri for Bangla */
+:root{
+  --paper:#f3f6f5; --sheet:#ffffff; --ink:#262c2a; --muted:#5d6763; --rule:#d7dfdd; --plate:#ffffff;
+  --navy:#3b6c68; --brass:#4f8c88; --brass-soft:#e4efed; --chip:#eef2f1; --ok:#515a55; --ok-soft:#e6eae8; --err:#a1352b;
+  --f-display:"Poppins","Hind Siliguri",system-ui,sans-serif;
+  --f-bn:"Hind Siliguri","Poppins",system-ui,sans-serif;
+  --f-body:"Hind Siliguri","Poppins",system-ui,sans-serif;
+  --f-mono:"Poppins","Hind Siliguri",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121615; --sheet:#1a1f1e; --ink:#e6ecea; --muted:#9ba7a3; --rule:#2d3533;
+  --navy:#8cc4bf; --brass:#6fb0aa; --brass-soft:#1f2f2d; --chip:#232a29; --ok:#d4dbd8; --ok-soft:#2c3432; --err:#ef8a7f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121615; --sheet:#1a1f1e; --ink:#e6ecea; --muted:#9ba7a3; --rule:#2d3533;
+  --navy:#8cc4bf; --brass:#6fb0aa; --brass-soft:#1f2f2d; --chip:#232a29; --ok:#d4dbd8; --ok-soft:#2c3432; --err:#ef8a7f; color-scheme:dark}
+.logo{display:inline-flex;background:var(--plate);border-radius:8px;padding:6px 10px;border:1px solid var(--rule)}
+.logo img{height:58px;width:auto;display:block}
+footer .logo img{height:46px}
+.about{display:grid;gap:14px}
+.svc{display:flex;flex-wrap:wrap;gap:8px}
+.svc span{font-size:14px;background:var(--chip);padding:4px 11px;border-radius:999px}
+a.cta{justify-self:start;display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--f-display);font-weight:600;font-size:15px;background:var(--brass);color:var(--sheet);padding:10px 18px;border-radius:6px}
+a.cta:hover{background:var(--navy)}
+footer a{color:var(--navy)}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 72px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sheet)}
+.wrap{max-width:840px;margin:0 auto;display:grid;gap:22px}
+.brandbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.ba{font-size:19px;color:var(--ink);letter-spacing:-.01em}.ba b{font-weight:700}
+.ba small{display:block;font-size:12px;color:var(--muted);letter-spacing:0}
+header{display:grid;gap:12px;padding-bottom:20px;border-bottom:3px double var(--rule)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+h1{margin:0;font-family:var(--f-display);font-weight:600;font-size:clamp(34px,6.5vw,50px);line-height:1.1;letter-spacing:-.015em;color:var(--navy)}
+h1 small{display:block;font-family:var(--f-bn);font-size:clamp(18px,3.4vw,22px);font-weight:600;color:var(--ink);margin-top:8px}
+h2{margin:0;font-family:var(--f-bn);font-size:21px;color:var(--navy);display:flex;gap:10px;align-items:baseline;text-wrap:balance}
+h2 .n{font-family:var(--f-mono);font-size:13px;color:var(--brass);font-weight:500;min-width:26px}
+p{margin:0}.muted{color:var(--muted)}
+.lede{font-size:17px;max-width:66ch}
+section{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:22px clamp(16px,3vw,28px);display:grid;gap:14px}
+section.pri{border:2px solid var(--brass)}
+.pri-tag{justify-self:start;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);border:1px solid var(--brass);padding:1px 8px;border-radius:3px}
+.part{display:grid;gap:4px;padding:6px 2px 0}
+.part .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.part h3{margin:0;font-family:var(--f-bn);font-size:26px;color:var(--ink);text-wrap:balance}
+.part p{color:var(--muted);max-width:66ch}
+.intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.intro-grid>div{border:1px solid var(--rule);border-radius:4px;padding:12px 14px;display:grid;gap:4px;min-width:0;background:var(--sheet)}
+.intro-grid b{color:var(--navy)}
+.sample{display:inline-block;font-size:13px;border:1px solid var(--brass);background:var(--brass-soft);padding:0 7px;border-radius:4px}
+.phases{display:flex;flex-wrap:wrap;gap:6px}
+.phases a{font-size:13.5px;text-decoration:none;color:var(--navy);background:var(--chip);padding:3px 10px;border-radius:999px}
+.phases a span{font-family:var(--f-mono);color:var(--brass);margin-right:4px}
+.sticky{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:10px 14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.bar{flex:1 1 160px;height:6px;background:var(--chip);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--brass);transition:width .25s}
+#pc{font-family:var(--f-mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sec-why{font-size:14.5px;color:var(--muted);max-width:66ch}
+.q{border-top:1px dashed var(--rule);padding-top:14px;display:grid;gap:8px}
+.q.first{border-top:0;padding-top:0}
+.qh{display:flex;gap:10px;align-items:baseline}
+.qid{font-family:var(--f-mono);font-size:12px;color:var(--brass);min-width:38px;flex:none}
+.qt{font-weight:600}
+.qt .kind{font-weight:400;font-size:12.5px;color:var(--muted);margin-left:6px;white-space:nowrap}
+.qt .req{color:var(--err);font-weight:600;margin-left:4px}
+.help{font-size:13.5px;color:var(--muted);padding-left:48px}
+.opts{display:grid;gap:6px;padding-left:48px}
+.opt{display:flex;gap:9px;align-items:flex-start;background:var(--chip);border:1px solid transparent;padding:7px 11px;border-radius:4px;cursor:pointer;font-size:15px;line-height:1.45;min-width:0}
+.opt input{accent-color:var(--ok);width:16px;height:16px;margin:3px 0 0;flex:none}
+.opt .t{display:grid;gap:1px;min-width:0}
+.opt .h{font-size:13px;color:var(--muted)}
+.opt.rec{border-color:var(--brass);background:var(--brass-soft)}
+.opt.rec .t>span:first-child::after{content:" · আমাদের সাজেশন";font-family:var(--f-mono);font-size:11px;color:var(--brass)}
+.opt:has(input:checked){border-color:var(--ok);background:var(--ok-soft)}
+.other,.txt{margin-left:48px;width:calc(100% - 48px);border:1px solid var(--rule);border-radius:4px;background:var(--sheet);color:var(--ink);font:inherit;font-size:14.5px;padding:7px 10px}
+.other{border-width:0 0 1px;border-radius:0;padding:4px 2px;background:transparent}
+textarea.txt{min-height:84px;resize:vertical}
+.other:focus,.txt:focus{outline:none;border-color:var(--brass)}
+.txt.bad{border-color:var(--err)}
+.palettes{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;padding-left:48px}
+.sw{display:flex;height:22px;border-radius:3px;overflow:hidden;border:1px solid var(--rule);margin-top:4px}
+.sw i{flex:1}
+@media (max-width:560px){.opts,.help,.palettes{padding-left:0}.other,.txt{margin-left:0;width:100%}}
+/* roadmap */
+.rm{display:grid;gap:0}
+.ph{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--rule)}
+.ph:first-child{border-top:0;padding-top:4px}
+.ph .no{font-family:var(--f-display);font-size:34px;line-height:1;color:var(--brass);font-variant-numeric:tabular-nums}
+.ph h4{margin:0 0 2px;font-family:var(--f-bn);font-size:18px;color:var(--navy)}
+.ph .when{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+.ph .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px 18px;margin-top:8px}
+.ph .cols>div{min-width:0}
+.ph .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
+.ph ul{margin:2px 0 0;padding-left:18px;display:grid;gap:2px;font-size:14.5px}
+@media (max-width:560px){.ph{grid-template-columns:1fr;gap:4px}}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font:inherit;font-size:15px;border-radius:4px;padding:9px 16px;cursor:pointer;border:1px solid var(--rule);background:var(--chip);color:var(--ink)}
+button.primary{background:var(--navy);color:var(--sheet);border-color:var(--navy);font-weight:600}
+button[disabled]{opacity:.6;cursor:default}
+button:focus-visible,.opt:focus-within,a:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+#msg{font-size:14.5px}
+#msg.ok{color:var(--ok)}#msg.err{color:var(--err)}
+.fallback{display:grid;gap:10px}
+#out{width:100%;min-height:160px;font-family:var(--f-mono);font-size:12.5px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--ink);padding:10px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{display:grid;gap:4px;text-align:center;font-size:13px;color:var(--muted)}
+footer .sel{user-select:all}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<div class="brandbar"><a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" aria-label="Business Aid ওয়েবসাইট"><img src="/the-shadow/business-aid-logo.webp" alt="Business Aid — Where business gets better"></a><span>Prepared for <b style="color:var(--ink)">The Shadow</b></span></div>
+
+<header>
+  <div class="eyebrow">Brand Discovery · The Shadow · Banani, Dhaka</div>
+  <h1>The Shadow<small>ব্র্যান্ড ডিসকভারি ফর্ম</small></h1>
+  <p class="lede">The Shadow-এর ব্র্যান্ড, লোগো, সোশ্যাল মিডিয়া, ওয়েবসাইট আর পুরো মার্কেটিং প্ল্যান বানানোর আগে আপনাদের ভাবনাগুলো জানতে চাই। প্রথম অংশটা সবচেয়ে গুরুত্বপূর্ণ: কেন এই ব্র্যান্ড, কার গল্প, কে মুখ, কী বলবে। বেশিরভাগ প্রশ্নে অপশন আছে, শুধু টিক দিন। না মিললে "অন্য কিছু" লাইনে লিখুন।</p>
+  <div class="intro-grid">
+    <div><b>সময় লাগবে</b><span>৩০–৩৫ মিনিট। মাঝপথে বন্ধ করলেও এই ব্রাউজারে উত্তর সেভ থাকবে।</span></div>
+    <div><b>কবে জমা দেবেন</b><span>বৃহস্পতিবার, ১২ নভেম্বর রাতের মধ্যে, যাতে শনিবারের মিটিংয়ে তৈরি প্ল্যান নিয়ে বসতে পারি।</span></div>
+    <div><b>নিশ্চিত না হলে</b><span><span class="sample">আমাদের সাজেশন</span> চিহ্নিত অপশনটা নিন। শনিবার একসাথে চূড়ান্ত করব।</span></div>
+    <div><b>শেষে</b><span>একদম নিচে "জমা দিন" চাপুন। উত্তর সরাসরি Business Aid টিমের কাছে পৌঁছাবে।</span></div>
+  </div>
+  <div class="phases" aria-label="কাজের ধাপ"><a href="#roadmap"><span>01</span>Discovery</a><a href="#roadmap"><span>02</span>Brand Strategy</a><a href="#roadmap"><span>03</span>Visual Identity</a><a href="#roadmap"><span>04</span>Social &amp; Google</a><a href="#roadmap"><span>05</span>Website</a><a href="#roadmap"><span>06</span>Business Profile</a><a href="#roadmap"><span>07</span>Story &amp; Video</a><a href="#roadmap"><span>08</span>Campaigns</a><a href="#roadmap"><span>09</span>Loyalty</a><a href="#roadmap"><span>10</span>Measure</a></div>
+</header>
+
+<div class="sticky" role="status" aria-live="polite"><span id="pc">০ / ০ প্রশ্ন</span><div class="bar"><i id="pb"></i></div></div>
+
+<form id="form" class="wrap" novalidate>
+  <div class="hp" aria-hidden="true"><label>Website<input type="text" id="hp_website" tabindex="-1" autocomplete="off"></label></div>
+</form>
+
+<section id="send" aria-labelledby="sendh">
+  <h2 id="sendh"><span class="n">✓</span>জমা দিন</h2>
+  <p class="sec-why">সব প্রশ্নের উত্তর না দিলেও জমা দেওয়া যাবে। শুধু নাম আর যোগাযোগের নম্বর (৭.১, ৭.২) লাগবে।</p>
+  <div class="btnrow"><button type="button" class="primary" id="submitBtn">জমা দিন</button><button type="button" id="resetBtn">সব মুছুন</button></div>
+  <p id="msg" role="status" aria-live="polite"></p>
+  <div class="fallback" id="fallback" hidden>
+    <p class="sec-why">সার্ভারে পাঠানো যায়নি। নিচের বোতাম চেপে উত্তর কপি করুন, তারপর Business Aid-এর WhatsApp <b class="sel">+880 1711 293197</b> অথবা <b class="sel">info@thebizaid.com</b>-এ পাঠান।</p>
+    <div class="btnrow"><button type="button" id="copyBtn">উত্তর কপি করুন</button></div>
+    <textarea id="out" readonly aria-label="আপনার উত্তরের সারাংশ"></textarea>
+  </div>
+</section>
+
+<section id="roadmap" aria-labelledby="rmh">
+  <h2 id="rmh"><span class="n">→</span>এরপর কী হবে: ৩৬০° ব্র্যান্ডিং ও মার্কেটিং রোডম্যাপ</h2>
+  <p class="sec-why">আপনাদের উত্তর থেকে আমরা এই ১০টা ধাপ সাজাব। প্রতিটা ধাপে আমরা কী করব, আপনারা কী হাতে পাবেন, আর আপনাদের কাছ থেকে কী লাগবে, সব এখানে দেওয়া আছে। সময়সূচি আনুমানিক, শনিবার চূড়ান্ত হবে।</p>
+  <div class="rm" id="rm"></div>
+</section>
+
+<section class="about" aria-labelledby="abouth">
+  <h2 id="abouth"><span class="n">BA</span>Business Aid সম্পর্কে</h2>
+  <p class="sec-why" style="color:var(--ink)">Business Aid ঢাকাভিত্তিক গ্রোথ ও মার্কেটিং পার্টনার। ব্র্যান্ড স্ট্র্যাটেজি থেকে কনটেন্ট, পেইড মিডিয়া আর কাস্টমার ধরে রাখা পর্যন্ত, একটা ব্যবসার পুরো যাত্রায় আমরা পাশে থাকি।</p>
+  <div class="svc"><span>Business Strategy</span><span>Content Creation</span><span>Media Buying</span><span>SEO &amp; AEO</span><span>E-commerce Growth</span><span>Legal Aid</span><span>Tax &amp; Compliance</span></div>
+  <p class="sec-why">আমাদের কাজ, ক্লায়েন্ট আর সার্ভিস সম্পর্কে বিস্তারিত জানতে আমাদের ওয়েবসাইট ভিজিট করুন।</p>
+  <a class="cta" href="https://thebizaid.com" target="_blank" rel="noopener">thebizaid.com ভিজিট করুন →</a>
+</section>
+
+<footer>
+  <a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" style="justify-self:center" aria-label="Business Aid ওয়েবসাইট"><img src="/the-shadow/business-aid-logo.webp" alt="Business Aid"></a>
+  <span><a href="https://thebizaid.com" target="_blank" rel="noopener">thebizaid.com</a> · Gulshan, Dhaka · <span class="sel">info@thebizaid.com</span> · <span class="sel">+880 1711 293197</span></span>
+  <span>এই ফর্মের তথ্য শুধু The Shadow-এর ব্র্যান্ড প্ল্যানিংয়ে ব্যবহার হবে।</span>
+</footer>
+</div>
+
+<script>
+/* Vercel API route (api/submit.js) — saves to Google Sheet */
+const SUBMIT_URL = "/api/submit";
+const FORM_ID = "the-shadow-discovery";
+
+/* type: 1 = একটা, m = একাধিক, t = ছোট লেখা, ta = বড় লেখা, pal = প্যালেট
+   "*" = আমাদের সাজেশন; "|" এর পরে ছোট ব্যাখ্যা; [id,t,type,opts,help,req] */
+const PARTS=[
+["Part 1 · Brand Core","ব্র্যান্ডের হৃদয়","এই অংশটাই সবচেয়ে গুরুত্বপূর্ণ। এখান থেকেই ব্র্যান্ডের গল্প, ট্যাগলাইন, লোগো আর পুরো কনটেন্টের দিক ঠিক হবে। একটু সময় নিয়ে পূরণ করুন।",true,[
+["কোন সমস্যার সমাধান করতে The Shadow এসেছে","বাজারে স্যুট বানাতে গিয়ে কাস্টমার কী ঝামেলায় পড়েন, আর আপনারা সেটা কীভাবে ঠিক করছেন? এটাই ব্র্যান্ডের মূল কারণ।",[
+ ["1.1","বাজারের কোন সমস্যাগুলো আপনারা সমাধান করছেন (সবচেয়ে বড় ৩টা)","m",["*লোকাল টেইলরে ফিট আর ফিনিশিং অনিশ্চিত, বারবার ঠিক করাতে হয়","*বিয়ে বা অনুষ্ঠানের আগে সময়মতো ডেলিভারি পাওয়া যায় না","বড় ব্র্যান্ডে রেডিমেড বা সাধারণ মাপ, ব্যক্তিগত মনোযোগ নেই","বেসপোক স্টুডিওগুলো খুব দামি, ঢুকতেই অস্বস্তি লাগে","*কী মানাবে, কোন স্টাইল বা রং নেবেন, এই পরামর্শ কেউ দেয় না","ব্যস্ত মানুষের বারবার দোকানে যাওয়ার সময় নেই","বিক্রির পর কোনো সার্ভিস নেই (অল্টারেশন, মাপ মনে রাখা)","ভালো স্যুটের জন্য বিদেশ যেতে হয় বা বিদেশ থেকে আনতে হয়","দাম আর প্রসেসে স্বচ্ছতা নেই"]],
+ ["1.2","আপনারা কীভাবে আলাদাভাবে সমাধান করেন","m",["*ব্যক্তিগত স্টাইল কনসালটেশন (কী পরবেন, কেন)","*ডেলিভারি তারিখের নিশ্চয়তা","*ফিট গ্যারান্টি, না মিললে ঠিক করে দেওয়া","হোম / অফিসে গিয়ে মাপ ও ফিটিং","প্রাইভেট, শান্ত স্টুডিও অভিজ্ঞতা","মাপ সেভ রাখা, পরের অর্ডার সহজ","আজীবন আফটার-কেয়ার (অল্টারেশন, প্রেসিং)","মানের তুলনায় যুক্তিসঙ্গত দাম","শুরু থেকেই স্বচ্ছ দাম ও প্রসেস"]],
+ ["1.3","এক লাইনে লিখুন: আমরা কাদের জন্য, কোন সমস্যা, কীভাবে সমাধান করি","ta",null,"উদাহরণ: \"আমরা ঢাকার ব্যস্ত প্রফেশনালদের জন্য, যারা বিয়ে বা বড় মিটিংয়ের আগে নিখুঁত স্যুট নিয়ে টেনশনে থাকেন, ব্যক্তিগত কনসালটেশন আর ডেলিভারির নিশ্চয়তা দিয়ে স্যুট বানাই।\" নিজের ভাষায়, যেমন মনে আসে লিখুন।"],
+ ["1.4","কোন ঘটনা বা অভিজ্ঞতা থেকে এই ব্যবসা শুরুর চিন্তা এলো","ta",null,"নিজের বা কাছের কারো খারাপ অভিজ্ঞতা, বিদেশে দেখা কিছু, পারিবারিক পেশা... ছোট করে লিখলেও চলবে। এটাই পরে ফাউন্ডার স্টোরি হবে।"]
+]],
+["ব্র্যান্ড স্টোরি ও নামের অর্থ","\"The Shadow\" নামের পেছনে একটা শক্তিশালী গল্প আছে। কোন অর্থটা আপনাদের সবচেয়ে কাছের?",[
+ ["2.1","\"The Shadow\" নামের অর্থ কোনটা","m",["*ছায়ার মতো ফিট|স্যুট আপনার শরীরের ছায়ার মতো নিখুঁতভাবে মিলে যায়","*আমরা ছায়ায় কাজ করি, আপনি আলোয় থাকেন|কারিগর পেছনে, কাস্টমার মঞ্চে","নীরব শক্তি ও রহস্য|কম কথা বলেন, কিন্তু উপস্থিতি সবাই টের পায়","ছায়ার মতো সবসময় পাশে|একবার কাস্টমার, সারাজীবনের সম্পর্ক"]],
+ ["2.2","গল্পটা কোন দিক থেকে বলব","1",["*ফাউন্ডারের যাত্রা|নিজের সমস্যা থেকে সমাধান খোঁজার গল্প","কারিগরের ঐতিহ্য|মাস্টার টেইলরের হাত ও অভিজ্ঞতা","কাস্টমারের মুহূর্ত|বিয়ে, প্রথম বড় মিটিং, জীবনের বিশেষ দিন","The Shadow দর্শন|নীরব আভিজাত্য, দেখানো নয়, অনুভব করানো"]],
+ ["2.3","গল্পে কী কী আসবে","m",["*ফাউন্ডারের পরিচয় ও কারণ","*মাস্টার টেইলর ও টিম","Banani স্টুডিও","প্রথম কাস্টমারদের অভিজ্ঞতা","কাজের প্রক্রিয়া (মাপ থেকে ডেলিভারি)","ভবিষ্যতের স্বপ্ন"]],
+ ["2.4","ফাউন্ডার ও মাস্টার টেইলরের সংক্ষিপ্ত পরিচয়","ta",null,"নাম, অভিজ্ঞতা, আগে কোথায় কাজ করেছেন, বিশেষ কোনো দক্ষতা বা অর্জন।"]
+]],
+["ব্র্যান্ডের মুখ","মানুষ মানুষকে বিশ্বাস করে। ক্যামেরার সামনে কে The Shadow-কে প্রতিনিধিত্ব করবেন?",[
+ ["3.1","ব্র্যান্ডের মুখ কে হবেন","m",["*ফাউন্ডার নিজে|সবচেয়ে বিশ্বাসযোগ্য, খরচ কম","*মাস্টার টেইলর|কারিগরির প্রমাণ","একজন পরিচিত অ্যাম্বাসেডর|অভিনেতা, খেলোয়াড়, উপস্থাপক","পেশাদার মডেল","আসল কাস্টমাররা","কোনো মুখ না, শুধু প্রোডাক্ট ও স্টুডিও"]],
+ ["3.2","ফাউন্ডার ক্যামেরায় কতটা আসতে রাজি","1",["*নিয়মিত (মাসে ২–৪টা ভিডিও)","মাঝে মাঝে (বিশেষ ক্যাম্পেইনে)","শুধু ছবিতে, ভিডিওতে না","একদমই না"]],
+ ["3.3","অ্যাম্বাসেডর নিলে কেমন মানুষ মানাবে","1",["*সফল ব্যবসায়ী / কর্পোরেট লিডার|কাস্টমার যাকে দেখে নিজেকে চেনে","অভিনেতা / মিডিয়া ব্যক্তিত্ব","খেলোয়াড়","স্টাইল ইনফ্লুয়েন্সার","অ্যাম্বাসেডর লাগবে না"]],
+ ["3.4","মাথায় কোনো নির্দিষ্ট নাম আছে? (অ্যাম্বাসেডর বা মুখ হিসেবে)","t"],
+ ["3.5","কাস্টমারের ছবি / ভিডিও পোস্ট করা যাবে (অনুমতি নিয়ে)?","1",["*হ্যাঁ, যারা রাজি","মুখ না দেখিয়ে","না, গোপনীয়তাই আমাদের প্রতিশ্রুতি"]]
+]],
+["ট্যাগলাইন ও মূল মেসেজ","ট্যাগলাইন হলো ব্র্যান্ডের এক লাইনের প্রতিশ্রুতি। পছন্দেরগুলো টিক দিন, আমরা চূড়ান্ত ৩টা অপশন বানাব।",[
+ ["4.1","কোন ট্যাগলাইনগুলো ভালো লাগছে","m",["*Fits Like Your Shadow.","*Crafted in the Shadow. Worn in the Light.","Your Shape. Your Shadow.","The Quiet Presence.","Cut for One.","Made for the Man Who Needs No Introduction."],"এগুলো দিক বোঝানোর নমুনা। নিজের মাথায় কোনো লাইন থাকলে \"অন্য কিছু\"-তে লিখুন।"],
+ ["4.2","কাস্টমার একটা কথা মনে রাখলে সেটা কী হবে","1",["*নিখুঁত ফিট, যেন আমার জন্যই বানানো","ব্যক্তিগত অভিজ্ঞতা, আমাকে বোঝে","নীরব আভিজাত্য","সময়মতো, ভরসা করা যায়","সারাজীবনের সম্পর্ক"]],
+ ["4.3","টোন অব ভয়েস","1",["*সংযত ও আত্মবিশ্বাসী|কম কথা, মাপা শব্দ, কোনো চিৎকার নেই","উষ্ণ ও বন্ধুসুলভ","বিশেষজ্ঞ ও শিক্ষামূলক","সাহসী ও আধুনিক"]],
+ ["4.4","ভাষা","1",["শুধু ইংরেজি","*ইংরেজি লেখা + বাংলায় কথা বলা ভিডিও","মূলত বাংলা","বাংলা-ইংরেজি মিশিয়ে"]],
+ ["4.5","বাংলা ট্যাগলাইনও চান?","1",["হ্যাঁ, দুটোই","*না, শুধু ইংরেজি","আপনারা সাজেস্ট করুন"]]
+]],
+["আর্কিটাইপ ও পার্সোনালিটি","আর্কিটাইপ মানে ব্র্যান্ডের চরিত্র। একটা প্রধান আর একটা সহায়ক বাছুন। এটাই লোগো, রং, ভাষা আর ছবির ধরন ঠিক করবে।",[
+ ["5.1","প্রধান আর্কিটাইপ (একটা)","1",["*Ruler · শাসক|মর্যাদা, ক্ষমতা, নিখুঁত মান। \"যারা রুম চালায়, তাদের স্যুট।\" যেমন Rolex","Creator · কারিগর|হাতের কাজ, সূক্ষ্মতা, শিল্প। \"প্রতিটা সেলাইয়ে যত্ন।\"","Sage · জ্ঞানী|জ্ঞান ও বিশ্বাস। স্টাইল আর ফিটের শিক্ষা দেয়","Lover · আবেগী|সৌন্দর্য, বিশেষ মুহূর্ত, বিয়ে। যেমন Chanel","Hero · বিজয়ী|সাফল্য, এগিয়ে যাওয়া। \"পরের বড় পদক্ষেপের জন্য।\"","Magician · রূপান্তরকারী|\"একটা স্যুটে বদলে যাওয়া।\" আগে/পরে গল্প","Explorer · অভিযাত্রী|স্বাধীনতা, ভ্রমণ, বিশ্ব নাগরিক"]],
+ ["5.2","সহায়ক আর্কিটাইপ (একটা)","1",["Ruler · শাসক","*Creator · কারিগর","Sage · জ্ঞানী","Lover · আবেগী","Hero · বিজয়ী","*Magician · রূপান্তরকারী|\"The Shadow\" নামের রহস্যের সাথে মেলে","Explorer · অভিযাত্রী"]],
+ ["5.3","ব্র্যান্ড যদি একজন মানুষ হতো","1",["*৪৫ বছরের সফল ব্যবসায়ী, কম কথা বলেন, সবাই সম্মান করে","৩৫ বছরের স্টাইলিশ ক্রিয়েটিভ ডিরেক্টর","অভিজ্ঞ মাস্টার টেইলর, বিনয়ী ও নিখুঁত","তরুণ উদ্যোক্তা, সাহসী ও আত্মবিশ্বাসী"]],
+ ["5.4","ব্র্যান্ডকে বর্ণনা করে এমন ৩টা শব্দ","m",["*Timeless · চিরন্তন","*Refined · পরিশীলিত","*Discreet · সংযত","Mysterious · রহস্যময়","Bold · সাহসী","Modern · আধুনিক","Exclusive · একচেটিয়া","Warm · উষ্ণ","Masculine · পুরুষালি","Heritage · ঐতিহ্যবাহী"]],
+ ["5.5","The Shadow যা কখনো হবে না","m",["*সস্তা / ডিসকাউন্ট ব্র্যান্ড","*চকচকে, লাউড বা অতিরিক্ত","ট্রেন্ড-নির্ভর ফাস্ট ফ্যাশন","অহংকারী / দূরের"]]
+]],
+["লোগো ও ভিজ্যুয়াল আইডেন্টিটি","লাক্সারি ব্র্যান্ডের প্রথম পরিচয় তার লোগো আর রং। বর্তমান লোগো আর ডিজাইন নিয়ে আপনাদের মত জানান।",[
+ ["6.1","বর্তমান লোগো নিয়ে কী করবেন","1",["*পুরোপুরি নতুন করে ডিজাইন|লাক্সারি পজিশনিংয়ের সাথে মিলিয়ে","বর্তমানটাকে উন্নত করা","যেমন আছে রাখা"]],
+ ["6.2","লোগোর ধরন","m",["*মনোগ্রাম|যেমন \"S\" বা \"TS\" অক্ষরের নকশা, লেবেল ও বোতামেও বসবে","*ওয়ার্ডমার্ক|শুধু নাম, সুন্দর অক্ষরে","ক্রেস্ট / এমব্লেম|ঐতিহ্যবাহী সিল","প্রতীক|ছায়া, সিলুয়েট, সুই-সুতা","সিগনেচার স্টাইল"]],
+ ["6.3","কালার প্যালেট (১–২টা)","pal",[["*Midnight & Brass",["#0f1a2e","#1f2f4f","#a3772a","#efe9dd"]],["*Charcoal & Ivory",["#1e1f22","#46484d","#d9d3c7","#f6f3ec"]],["Black & Gold",["#0b0b0b","#262626","#b8963e","#e9dfc6"]],["Navy & Oxblood",["#14213d","#2b3a5c","#5e1a1d","#efe8de"]],["Forest & Camel",["#1d2b22","#36493b","#b08a5b","#f1ebe0"]]]],
+ ["6.4","ফন্টের অনুভূতি","1",["*ক্লাসিক সেরিফ|পুরনো ঘড়ি বা দর্জিঘরের ব্র্যান্ডের মতো","আধুনিক সান-সেরিফ|পরিষ্কার, মিনিমাল","দুটো মিশিয়ে"]],
+ ["6.5","ছবি ও ভিডিওর মুড","m",["*ডার্ক ও মুডি, আলো-ছায়ার খেলা|নামের সাথে সরাসরি মেলে","*কারিগরির ক্লোজ-আপ (হাত, সুই, কাঁচি)","উজ্জ্বল এডিটোরিয়াল (ম্যাগাজিনের মতো)","বাইরে লাইফস্টাইল (গাড়ি, হোটেল, অফিস)"]],
+ ["6.6","যেসব ব্র্যান্ডের লুক ভালো লাগে (দেশি বা বিদেশি, লিংক দিলে ভালো)","t"]
+]]
+]],
+["Part 2 · Business","বিজনেস ও কাস্টমার","ছোট আর সহজ প্রশ্ন। এগুলো দিয়ে আমরা দাম, কাস্টমার আর লক্ষ্য বুঝব।",false,[
+["বিজনেসের মূল তথ্য","",[
+ ["7.1","ব্র্যান্ডের অফিশিয়াল নাম ও ফাউন্ডারদের নাম","t",null,"",true],
+ ["7.2","যোগাযোগের মানুষ (নাম, পদবি, ফোন / WhatsApp)","t",null,"",true],
+ ["7.3","স্টুডিওর ঠিকানা ও খোলার সময়","t"],
+ ["7.4","এখন কোন অবস্থায় আছেন","1",["স্টুডিও প্রস্তুত হচ্ছে, এখনো খোলেনি","*সফট লঞ্চ হয়েছে, অল্প কিছু কাস্টমার","পুরোপুরি চালু, শুধু মার্কেটিং নেই"]],
+ ["7.5","স্যুট বানানোর পদ্ধতি","1",["Full bespoke|প্রতিটা কাস্টমারের জন্য নতুন প্যাটার্ন, ২–৩টা ফিটিং","Made-to-measure|বেস প্যাটার্ন + মাপ, ১–২টা ফিটিং","দুটোই, দামের স্তর অনুযায়ী"]],
+ ["7.6","কী কী বানান / বিক্রি করেন","m",["২ পিস ও ৩ পিস স্যুট","ব্লেজার / জ্যাকেট","টাক্সেডো","শেরওয়ানি / প্রিন্স কোট","শার্ট","ট্রাউজার","ওভারকোট","টাই, পকেট স্কয়ার, কাফলিংক","জুতা"]],
+ ["7.7","একটা স্যুটের দামের রেঞ্জ","m",["৳২০,০০০–৩৫,০০০","৳৩৫,০০০–৬০,০০০","৳৬০,০০০–১,০০,০০০","৳১,০০,০০০+"]],
+ ["7.8","অর্ডার থেকে ডেলিভারি","1",["৭–১০ দিন","২–৩ সপ্তাহ","৩–৪ সপ্তাহ","৪ সপ্তাহের বেশি"]],
+ ["7.9","মাসে সর্বোচ্চ কতগুলো স্যুট বানাতে পারবেন","1",["২০টার কম","২০–৫০","৫০–১০০","১০০+"]],
+ ["7.10","বিশেষ সার্ভিস","m",["হোম / অফিসে গিয়ে মাপ নেওয়া","ফ্রি অল্টারেশন / ফিট গ্যারান্টি","গ্রুপ অর্ডার (বর + বরযাত্রী)","কর্পোরেট অর্ডার","প্রবাসীদের জন্য ভিডিও কনসালটেশন","এক্সপ্রেস ডেলিভারি"]],
+ ["7.11","কাপড়ের কালেকশন সংক্ষেপে (কোন দেশ / মিল, কতগুলো অপশন)","t"]
+]],
+["কাস্টমার","",[
+ ["8.1","প্রধান কাস্টমার কারা (সর্বোচ্চ ৩টা)","m",["*বর ও বরযাত্রী","*কর্পোরেট এক্সিকিউটিভ, ব্যাংকার, আইনজীবী","ব্যবসায়ী / শিল্পপতি","রাজনীতিবিদ / সামাজিক পরিচিত মুখ","তরুণ প্রফেশনাল (২৫–৩৫)","প্রবাসী (NRB)","ডিপ্লোম্যাট / বিদেশি নাগরিক"]],
+ ["8.2","বয়স","m",["২২–২৯","৩০–৩৯","৪০–৪৯","৫০+"]],
+ ["8.3","কোন এলাকা থেকে আসবে","m",["*Gulshan, Banani, Baridhara","Dhanmondi, Mohammadpur","Uttara, Bashundhara","পুরান ঢাকা","ঢাকার বাইরে","দেশের বাইরে"]],
+ ["8.4","কাস্টমার কী উপলক্ষে স্যুট বানায়","m",["বিয়ে","অফিস / বোর্ড মিটিং","পার্টি / গালা / ইভেন্ট","বিদেশ যাত্রা / কনফারেন্স","ঈদ / উৎসব"]],
+ ["8.5","এরা এখন কোথা থেকে স্যুট নেয়","m",["লোকাল টেইলর","Gentleman's Wardrobe ধরনের ব্র্যান্ড","Zurhem / Dapper Bespoke ধরনের স্টুডিও","বিদেশ থেকে (ব্যাংকক, দুবাই, লন্ডন)"]],
+ ["8.6","কাস্টমার কোথা থেকে আসবে (অফলাইন : অনলাইন)","1",["৮০ : ২০|রেফারেল আর পরিচিতজন বেশি","*৬০ : ৪০|অনলাইনে খুঁজে পেয়ে স্টুডিওতে আসবে","৪০ : ৬০|মূলত অনলাইন থেকে","জানি না, আপনারা সাজেস্ট করুন"]],
+ ["8.7","আপনাদের কাস্টমার কোন ব্র্যান্ড ভালোবাসে (ঘড়ি, গাড়ি, পারফিউম, রেস্টুরেন্ট, ক্লাব)","t"]
+]],
+["ভিশন ও লক্ষ্য","",[
+ ["9.1","৫ বছর পর The Shadow কোথায়","1",["*ঢাকার এক নম্বর লাক্সারি কাস্টম টেইলরিং স্টুডিও","একাধিক শহরে স্টুডিও","প্রবাসী ও বিদেশি কাস্টমারও ধরবে","নিজেদের রেডি-টু-ওয়্যার লাইনসহ পূর্ণ মেনসওয়্যার হাউস"]],
+ ["9.2","প্রথম ৬ মাসের প্রধান লক্ষ্য","1",["*নিয়মিত অ্যাপয়েন্টমেন্ট ও অর্ডার","ব্র্যান্ডের নাম পরিচিত করা","কর্পোরেট ক্লায়েন্ট","বিয়ের সিজনে বড় বিক্রি"]],
+ ["9.3","৬ মাস পর মাসে কতগুলো অর্ডার চান","1",["১০–২০","*২০–৪০","৪০–৮০","৮০+"]],
+ ["9.4","প্রথম বছরের আয়ের লক্ষ্য","1",["৳২৫ লাখের কম","৳২৫–৫০ লাখ","৳৫০ লাখ–১ কোটি","৳১ কোটি+","এখনো ঠিক করিনি"]]
+]]
+]],
+["Part 3 · Marketing","মার্কেটিং সেটআপ","কোন চ্যানেলে থাকবেন, ওয়েবসাইট কেমন হবে, কীভাবে প্রমোশন করবেন, আর কাস্টমারকে কীভাবে ধরে রাখবেন।",false,[
+["সোশ্যাল মিডিয়া ও Google","",[
+ ["10.1","কোন চ্যানেলগুলোতে থাকতে চান","m",["*Facebook|অ্যাড ও মেসেজের মূল জায়গা","*Instagram|লাক্সারি ইমেজ ও শোকেস","*WhatsApp Business|বুকিং ও সেলস","*Google Business Profile / Maps|\"suit tailor Banani\" খুঁজলে যেন পাওয়া যায়","LinkedIn|কর্পোরেট কাস্টমার","TikTok|তরুণ কাস্টমার ও বেশি রিচ","YouTube|লম্বা ভিডিও, প্রসেস","Pinterest|স্টাইল ইন্সপিরেশন"]],
+ ["10.2","কোনটা সবচেয়ে গুরুত্বপূর্ণ","1",["*Instagram","Facebook","WhatsApp","LinkedIn","Google"]],
+ ["10.3","এখন কোন অ্যাকাউন্টগুলো খোলা আছে (লিংক বা ইউজারনেম)","t"],
+ ["10.4","মেসেজের উত্তর কে দেবেন","1",["*আলাদা একজন সেলস / কাস্টমার কেয়ার মানুষ","ফাউন্ডার নিজে","এজেন্সি প্রথম উত্তর দেবে, তারপর আপনারা"]],
+ ["10.5","মেসেজের উত্তর কত দ্রুত দিতে পারবেন","1",["*১৫ মিনিটের মধ্যে (অফিস সময়ে)","১ ঘণ্টার মধ্যে","দিনে একবার"]]
+]],
+["ওয়েবসাইট","দুই ধরনের ওয়েবসাইট হতে পারে। লক্ষ্য আর বাজেট অনুযায়ী বাছুন।",[
+ ["11.1","কোন ধরনের ওয়েবসাইট","1",["অপশন A · ক্যাটালগ ওয়েবসাইট|WordPress বা Shopify। লুকবুক, কালেকশন, দাম শুরু, বুকিং ফর্ম। ৩–৪ সপ্তাহ, খরচ কম","অপশন B · কাস্টম ইন্টারঅ্যাকটিভ|কাস্টমার নিজে কাপড়, ল্যাপেল, বোতাম, লাইনিং বেছে স্যুট ডিজাইন করে বুক করবে। ৮–১২ সপ্তাহ, খরচ বেশি","*প্রথমে A, পরে B-তে আপগ্রেড|দ্রুত লাইভ, পরে অভিজ্ঞতা বাড়ানো"]],
+ ["11.2","ওয়েবসাইটে কী কী লাগবে","m",["*অ্যাপয়েন্টমেন্ট বুকিং (তারিখ ও সময়)","*লুকবুক / গ্যালারি","*WhatsApp চ্যাট বোতাম","*ব্র্যান্ড স্টোরি পেজ","কাপড়ের কালেকশন","দামের আনুমানিক হিসাব","স্যুট কনফিগারেটর (নিজে ডিজাইন)","অগ্রিম অনলাইন পেমেন্ট (bKash / কার্ড)","কাস্টমারের মাপ সেভ করা অ্যাকাউন্ট","স্টাইল গাইড / ব্লগ"]],
+ ["11.3","ডোমেইন আছে?","1",["হ্যাঁ (অন্য কিছু-তে লিখুন)","না, কিনতে হবে","জানি না"]],
+ ["11.4","ওয়েবসাইটের বাজেট","1",["৳৫০,০০০ এর কম","*৳৫০,০০০–১,৫০,০০০","৳১,৫০,০০০–৩,০০,০০০","৳৩,০০,০০০+"]]
+]],
+["স্টুডিও, অফলাইন ও লয়ালটি","",[
+ ["12.1","স্টুডিওতে কীভাবে আসবে","1",["*শুধু অ্যাপয়েন্টমেন্ট নিয়ে|একচেটিয়া অনুভূতি","অ্যাপয়েন্টমেন্ট + ওয়াক-ইন","যেকোনো সময় ওয়াক-ইন"]],
+ ["12.2","কোন অফলাইন ইভেন্টে আগ্রহী","m",["*প্রাইভেট লঞ্চ ইভনিং (৩০–৫০ আমন্ত্রিত)","হোটেল / ক্লাবে ট্রাঙ্ক শো","কর্পোরেট অফিসে মেজারমেন্ট ডে","স্টাইল ওয়ার্কশপ","ওয়েডিং ফেয়ারে স্টল"]],
+ ["12.3","কাদের সাথে পার্টনারশিপ চান","m",["*ওয়েডিং ফটোগ্রাফার / প্ল্যানার","*কর্পোরেট HR / অ্যাডমিন","হোটেল, ক্লাব, গলফ ক্লাব","লাক্সারি ঘড়ি / পারফিউম / গাড়ির শোরুম","বারবার / গ্রুমিং সেলুন"]],
+ ["12.4","লয়ালটি প্রোগ্রামে কী থাকবে","m",["*রেফারেল রিওয়ার্ড|বন্ধু আনলে দুজনেই সুবিধা","*মেম্বারশিপ সার্কেল|যেমন \"The Shadow Circle\", প্রাইভেট প্রিভিউ ও প্রাধান্য","বছরে ফ্রি কেয়ার (প্রেসিং, ছোট অল্টারেশন)","জন্মদিন / বিয়েবার্ষিকীতে বিশেষ উপহার","দ্বিতীয় স্যুটে বিশেষ সুবিধা","এখন দরকার নেই"]],
+ ["12.5","প্যাকেজিং","m",["*গারমেন্ট ব্যাগ","*কাঠের হ্যাঙ্গার","ব্র্যান্ড কেয়ার কার্ড","গিফট বক্স","শপিং ব্যাগ","হাতে লেখা ধন্যবাদ কার্ড"]]
+]],
+["প্রমোশন, ক্যাম্পেইন ও ইনফ্লুয়েন্সার","",[
+ ["13.1","কোন ক্যাম্পেইনগুলো প্রথম বছরে চান","m",["*লঞ্চ ক্যাম্পেইন","*বিয়ের সিজন (ডিসেম্বর–ফেব্রুয়ারি)","ঈদ","কর্পোরেট ক্যাম্পেইন","নিউ ইয়ার / পার্টি সিজন","গ্র্যাজুয়েশন / প্রথম চাকরি"]],
+ ["13.2","কোন ধরনের ইনফ্লুয়েন্সার / ক্রিয়েটর","m",["*মাইক্রো ইনফ্লুয়েন্সার (১০–১০০k ফলোয়ার)|মেনসওয়্যার, লাইফস্টাইল, গ্রুমিং","ম্যাক্রো ইনফ্লুয়েন্সার (১০০k+)","সেলিব্রিটি","কর্পোরেট লিডার / LinkedIn ভয়েস","আসল কাস্টমারের রিভিউ ভিডিও"]],
+ ["13.3","প্রতি মাসে কতজন ক্রিয়েটর","1",["১–২ জন","*৩–৫ জন","৫+ জন"]],
+ ["13.4","ক্রিয়েটরদের পারিশ্রমিক","m",["*নগদ সম্মানী|পেশাদার ক্রিয়েটরের প্রতি সম্মান; কাজের মান, সময় আর কনটেন্ট ব্যবহারের অধিকার নিশ্চিত হয়","সম্মানীর সাথে স্যুট উপহার","শুধু স্যুট উপহার (বার্টার)","বিক্রির কমিশন (আলাদা কোড)"]],
+ ["13.5","মাসিক ইনফ্লুয়েন্সার বাজেট","1",["৳২০,০০০ এর কম","*৳২০,০০০–৫০,০০০","৳৫০,০০০–১,০০,০০০","৳১,০০,০০০+"]],
+ ["13.6","মিডিয়া PR চান? (লাইফস্টাইল পত্রিকা ও ম্যাগাজিন)","1",["*হ্যাঁ, লঞ্চের সময়","পরে","না"]]
+]],
+["বাজেট, সময় ও যোগাযোগ","বাজেট আনুমানিক দিলেই চলবে, শনিবার আলোচনা করে ঠিক করব।",[
+ ["14.1","ব্র্যান্ডিং (লোগো, গাইডলাইন, প্যাকেজিং ডিজাইন), এককালীন","1",["৳৫০,০০০ এর কম","*৳৫০,০০০–১,৫০,০০০","৳১,৫০,০০০+"]],
+ ["14.2","মাসিক অ্যাড বাজেট (Meta + Google, শুধু মিডিয়া খরচ)","1",["৳৩০,০০০–৬০,০০০","*৳৬০,০০০–১,২০,০০০","৳১,২০,০০০–২,৫০,০০০","৳২,৫০,০০০+"]],
+ ["14.3","ফটো / ভিডিও প্রোডাকশন","1",["*মাসে একটা শুট","লঞ্চে একটা বড় শুট, পরে ছোট","নিজেরা ফোনে করব"]],
+ ["14.4","কবে লাইভ হতে চান","1",["*ডিসেম্বরের শুরুতে, বিয়ের সিজন ধরতে","জানুয়ারি","ঈদের আগে","তাড়া নেই"]],
+ ["14.5","Business Aid-এর কাছ থেকে কোন ধরনের সার্ভিস চান","1",["শুধু ব্র্যান্ডিং ও সেটআপ (এককালীন)","*ব্র্যান্ডিং + মাসিক মার্কেটিং (৬ মাস)","৩৬০°: ব্র্যান্ডিং, ওয়েবসাইট, কনটেন্ট, ক্যাম্পেইন, PR, লয়ালটি","শনিবার আলোচনা করে ঠিক করব"]],
+ ["14.6","চূড়ান্ত সিদ্ধান্ত কে নেবেন","1",["একজন ফাউন্ডার","সব পার্টনার মিলে","ম্যানেজার, পরে ফাউন্ডারের অনুমোদন"]],
+ ["14.7","যা পাঠাতে পারবেন (WhatsApp / ইমেইলে আলাদা করে)","m",["বর্তমান লোগো ফাইল","স্টুডিওর ছবি / ভিডিও","দামের তালিকা","কাপড়ের কালেকশনের ছবি","Facebook পেজে অ্যাডমিন অ্যাক্সেস","Meta Business Manager অ্যাক্সেস","Google অ্যাকাউন্ট / Business Profile অ্যাক্সেস","ডোমেইন / হোস্টিং তথ্য","যেসব ডিজাইন ভালো লাগে তার স্ক্রিনশট"]],
+ ["14.8","আর কিছু বলতে চান? চিন্তা, ভয় বা বিশেষ ইচ্ছা","ta"]
+]]
+]]
+];
+
+const ROAD=[
+ ["Discovery","এই ফর্ম + শনিবারের ওয়ার্কশপ · সপ্তাহ ০–১",["আপনাদের উত্তর বিশ্লেষণ","কম্পিটিটর ও মার্কেট রিভিউ","শনিবার ৯০ মিনিটের ব্র্যান্ড ওয়ার্কশপ"],["ডিসকভারি সামারি","কাজের স্কোপ ও প্রপোজাল"],["এই ফর্ম","ফাউন্ডারদের ৯০ মিনিট"]],
+ ["Brand Strategy","সপ্তাহ ১–২",["সমস্যা ও পজিশনিং স্টেটমেন্ট","আর্কিটাইপ ও পার্সোনালিটি","ব্র্যান্ড স্টোরি (\"The Shadow\" অর্থসহ)","ট্যাগলাইন: ৩টা অপশন","টোন অব ভয়েস ও মেসেজ পিলার"],["ব্র্যান্ড স্ট্র্যাটেজি ডক"],["একবার রিভিউ ও অনুমোদন"]],
+ ["Visual Identity","সপ্তাহ ২–৪",["লোগো: ৩টা কনসেপ্ট থেকে ১টা চূড়ান্ত","মনোগ্রাম, কালার, টাইপোগ্রাফি","ভিজিটিং কার্ড, লেটারহেড","প্যাকেজিং ও স্টুডিও সাইনেজ","ফটো ও ভিডিও স্টাইল গাইড"],["ব্র্যান্ড গাইডলাইন বুক (PDF)","সব লোগো ফাইল"],["ফিডব্যাক (২ রাউন্ড)"]],
+ ["Social & Google Setup","সপ্তাহ ৩–৫",["Facebook পেজ রিব্র্যান্ড","Instagram, LinkedIn, TikTok, YouTube, Pinterest সেটআপ","WhatsApp Business: ক্যাটালগ, অটো-রিপ্লাই, কুইক রিপ্লাই","Google Business Profile ও Maps","প্রোফাইল ডিজাইন, বায়ো, হাইলাইট কভার","Meta Business Suite, Pixel, ট্র্যাকিং"],["সব চ্যানেল লাইভ ও এক রকম দেখতে"],["অ্যাডমিন অ্যাক্সেস","স্টুডিওর ঠিকানা যাচাই"]],
+ ["Website","অপশন A: সপ্তাহ ৪–৮ · অপশন B: ৮–১২ সপ্তাহ",["ডোমেইন ও হোস্টিং","ডিজাইন ও ডেভেলপমেন্ট","অ্যাপয়েন্টমেন্ট বুকিং, লুকবুক, ব্র্যান্ড স্টোরি","বেসিক SEO ও Google Analytics","(B) স্যুট কনফিগারেটর"],["লাইভ ওয়েবসাইট","অ্যাডমিন ট্রেনিং"],["ছবি, দাম, কনটেন্ট অনুমোদন"]],
+ ["Business Profile & Sales Kit","সপ্তাহ ৪–৬",["কোম্পানি প্রোফাইল (PDF)","কর্পোরেট প্রপোজাল ডেক","সার্ভিস ও দামের মেনু","WhatsApp / ফোন সেলস স্ক্রিপ্ট","অ্যাপয়েন্টমেন্ট থেকে ডেলিভারি পর্যন্ত কাস্টমার জার্নি"],["সেলস কিট, প্রিন্ট ও ডিজিটাল"],["দাম ও সার্ভিসের তথ্য"]],
+ ["Storyline & Video Production","সপ্তাহ ৫ থেকে চলমান",["স্টোরি সিরিজ: ফাউন্ডার স্টোরি, \"The Making\" কারিগরি সিরিজ, কাস্টমার ট্রান্সফর্মেশন, স্টাইল কোডস","স্ক্রিপ্ট, শট লিস্ট, শুট প্ল্যান","ব্র্যান্ড ফিল্ম (৬০–৯০ সেকেন্ড)","মাসিক ফটো ও ভিডিও শুট","মাসিক কনটেন্ট ক্যালেন্ডার"],["ব্র্যান্ড ফিল্ম","প্রতি মাসে রিল, ছবি, স্টোরি"],["শুটের দিন স্টুডিও ও মুখ","কাস্টমারের অনুমতি"]],
+ ["Launch & Campaigns","মাস ২ থেকে",["ক্যাম্পেইন প্ল্যান: টিজার, লঞ্চ, বিয়ের সিজন, ঈদ, কর্পোরেট","প্রাইভেট লঞ্চ ইভনিং","Meta ও Google অ্যাড","ইনফ্লুয়েন্সার প্রোগ্রাম (আলাদা কোড দিয়ে ট্র্যাকিং)","মিডিয়া PR ও পার্টনারশিপ"],["ক্যাম্পেইন ক্যালেন্ডার","লিড ও অ্যাপয়েন্টমেন্ট"],["অ্যাড ও ইনফ্লুয়েন্সার বাজেট","লিডের দ্রুত উত্তর"]],
+ ["Loyalty & Retention","মাস ৩ থেকে",["ক্লায়েন্ট প্রোফাইল ও CRM (মাপ, পছন্দ, বিশেষ দিন)","রেফারেল প্রোগ্রাম","মেম্বারশিপ সার্কেল","আফটার-কেয়ার ও ফলো-আপ মেসেজ","রিভিউ সংগ্রহ (Google ও Facebook)"],["লয়ালটি প্রোগ্রাম গাইড","রিপিট ও রেফারেল সিস্টেম"],["কাস্টমার ডেটা আপডেট রাখা"]],
+ ["Measure & Grow","চলমান",["মাসিক রিপোর্ট: লিড, স্টুডিও ভিজিট, অর্ডার","প্রতি অর্ডারের খরচ ও চ্যানেলভিত্তিক ফলাফল","বাজেট অপ্টিমাইজেশন","প্রতি ৩ মাসে স্ট্র্যাটেজি রিভিউ"],["মাসিক রিপোর্ট ও মিটিং"],["অর্ডার ও বিক্রির তথ্য শেয়ার"]]
+];
+
+const KEY="shadow-discovery-v2";let st={};try{st=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const kinds={"1":"একটা বাছুন","m":"একাধিক বাছতে পারেন","t":"লিখুন","ta":"লিখুন","pal":"১–২টা বাছুন"};
+const form=document.getElementById("form");const QS=[];let secNo=0;
+
+PARTS.forEach(([pk,ptitle,pdesc,pri,secs])=>{
+  const ph=document.createElement("div");ph.className="part";
+  ph.innerHTML=`<span class="k">${esc(pk)}</span><h3>${esc(ptitle)}</h3><p>${esc(pdesc)}</p>`;form.appendChild(ph);
+  secs.forEach(([title,why,qs])=>{secNo++;
+    const sec=document.createElement("section");if(pri)sec.className="pri";
+    let h=pri?`<span class="pri-tag">সবচেয়ে গুরুত্বপূর্ণ</span>`:"";
+    h+=`<h2><span class="n">${bn(String(secNo).padStart(2,"0"))}</span>${esc(title)}</h2>`;
+    if(why)h+=`<p class="sec-why">${esc(why)}</p>`;
+    qs.forEach(([id,t,type,opts,help,req],qi)=>{QS.push({id,t,type,opts,sec:title,req:!!req});
+      h+=`<div class="q${qi===0?" first":""}"><div class="qh"><span class="qid">${bn(id)}</span><span class="qt">${esc(t)}${req?'<span class="req">*</span>':""}<span class="kind">· ${kinds[type]}</span></span></div>`;
+      if(help)h+=`<p class="help">${esc(help)}</p>`;
+      if(type==="t"||type==="ta"){const v=esc(st[id]||"");
+        h+=type==="t"?`<input class="txt" id="f_${id}" data-q="${id}" value="${v}" aria-label="${esc(t)}"${req?" required":""}>`:`<textarea class="txt" id="f_${id}" data-q="${id}" aria-label="${esc(t)}">${v}</textarea>`;
+      } else {
+        if(type==="pal"){
+          h+=`<div class="palettes">`+opts.map(([name,cols],i)=>{const rec=name[0]==="*";const nm=rec?name.slice(1):name;const k=id+"_"+i;
+            return `<label class="opt${rec?" rec":""}"><input type="checkbox" id="${k}" data-q="${id}" ${st[k]?"checked":""}><span class="t"><span>${esc(nm)}</span><span class="sw">${cols.map(c=>`<i style="background:${c}"></i>`).join("")}</span></span></label>`}).join("")+`</div>`;
+        } else {
+          const inp=type==="1"?"radio":"checkbox";
+          h+=`<div class="opts" role="${type==="1"?"radiogroup":"group"}" aria-label="${esc(t)}">`+opts.map((o,i)=>{const rec=o[0]==="*";const [main,hint]=(rec?o.slice(1):o).split("|");const k=id+"_"+i;
+            return `<label class="opt${rec?" rec":""}"><input type="${inp}" name="q_${id}" id="${k}" data-q="${id}" ${st[k]?"checked":""}><span class="t"><span>${esc(main)}</span>${hint?`<span class="h">${esc(hint)}</span>`:""}</span></label>`}).join("")+`</div>`;
+        }
+        h+=`<input class="other" id="o_${id}" data-q="${id}" placeholder="অন্য কিছু / নিজের মতো লিখুন…" value="${esc(st["o_"+id]||"")}" aria-label="${esc(t)}: অন্য কিছু">`;
+      }
+      h+=`</div>`;
+    });
+    sec.innerHTML=h;form.appendChild(sec);
+  });
+});
+
+document.getElementById("rm").innerHTML=ROAD.map(([name,when,doList,get,need],i)=>`
+ <div class="ph"><div class="no">${String(i+1).padStart(2,"0")}</div><div>
+  <h4>${esc(name)}</h4><div class="when">${esc(when)}</div>
+  <div class="cols">
+   <div><span class="lbl">আমরা যা করব</span><ul>${doList.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+   <div><span class="lbl">আপনি পাবেন</span><ul>${get.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+   <span class="lbl" style="display:block;margin-top:8px">আপনাদের কাছ থেকে লাগবে</span><ul>${need.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>
+  </div></div></div>`).join("");
+
+const clean=s=>{s=s[0]==="*"?s.slice(1):s;return s.split("|")[0]};
+function answerOf(q){
+  if(q.type==="t"||q.type==="ta")return (st[q.id]||"").trim();
+  const picks=q.opts.map((o,i)=>st[q.id+"_"+i]?clean(q.type==="pal"?o[0]:o):null).filter(Boolean);
+  const o=(st["o_"+q.id]||"").trim();if(o)picks.push("অন্য: "+o);return picks.join("; ");
+}
+function summary(){const L=["THE SHADOW · Brand Discovery","জমার সময়: "+new Date().toLocaleString(),""];let cur="";
+  QS.forEach(q=>{if(q.sec!==cur){cur=q.sec;L.push("","■ "+cur)}L.push(q.id+" "+q.t+": "+(answerOf(q)||"—"))});return L.join("\n")}
+function answersObj(){const a={};QS.forEach(q=>{a[q.id]={q:q.t,a:answerOf(q)}});return a}
+function refresh(){const d=QS.filter(q=>answerOf(q)).length;
+  document.getElementById("pc").textContent=bn(d)+" / "+bn(QS.length)+" প্রশ্নের উত্তর দেওয়া হয়েছে";
+  document.getElementById("pb").style.width=(d/QS.length*100)+"%";document.getElementById("out").value=summary()}
+form.addEventListener("change",e=>{const el=e.target;
+  if(el.type==="radio"){document.querySelectorAll(`input[name="${el.name}"]`).forEach(r=>{st[r.id]=r.checked})}
+  else if(el.type==="checkbox"){st[el.id]=el.checked}else return;save();refresh()});
+form.addEventListener("input",e=>{const el=e.target;
+  if(el.classList.contains("txt")){st[el.dataset.q]=el.value;el.classList.remove("bad")}
+  else if(el.classList.contains("other")){st[el.id]=el.value}else return;save();refresh()});
+
+const msg=document.getElementById("msg"),btn=document.getElementById("submitBtn"),fb=document.getElementById("fallback");
+function say(t,c){msg.textContent=t;msg.className=c||""}
+btn.addEventListener("click",async()=>{
+  const missing=QS.filter(q=>q.req&&!answerOf(q));
+  if(missing.length){missing.forEach(q=>document.getElementById("f_"+q.id).classList.add("bad"));
+    document.getElementById("f_"+missing[0].id).focus();say("নাম আর যোগাযোগের নম্বর (৭.১, ৭.২) দিন, তারপর জমা দিন।","err");return}
+  btn.disabled=true;say("জমা হচ্ছে…");
+  const payload={form:FORM_ID,submitted_at:new Date().toISOString(),website:document.getElementById("hp_website").value,answers:answersObj(),summary:summary()};
+  try{
+    const r=await fetch(SUBMIT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    const j=await r.json().catch(()=>null);if(!r.ok||!j||!j.ok)throw new Error("bad response");
+    say("ধন্যবাদ! আপনার উত্তর Business Aid টিমের কাছে পৌঁছেছে। শনিবার দেখা হচ্ছে।","ok");fb.hidden=true;btn.textContent="জমা হয়েছে";
+  }catch(err){btn.disabled=false;say("এই মুহূর্তে সার্ভারে পাঠানো যায়নি। নিচের বিকল্প পদ্ধতিতে পাঠান।","err");fb.hidden=false;refresh()}
+});
+document.getElementById("copyBtn").addEventListener("click",()=>{const text=summary();const o=document.getElementById("out");
+  const sel=()=>{o.focus();o.select();say("বক্সের লেখা সিলেক্ট করা হয়েছে, Ctrl+C / কপি চাপুন।","err")};
+  try{navigator.clipboard.writeText(text).then(()=>say("কপি হয়েছে। WhatsApp বা ইমেইলে পেস্ট করে পাঠান।","ok")).catch(sel)}catch(e){sel()}});
+let armed=false;document.getElementById("resetBtn").addEventListener("click",e=>{
+  if(!armed){armed=true;e.target.textContent="নিশ্চিত? আবার চাপুন";setTimeout(()=>{armed=false;e.target.textContent="সব মুছুন"},3000);return}
+  st={};save();form.querySelectorAll("input[type=checkbox],input[type=radio]").forEach(c=>c.checked=false);
+  form.querySelectorAll(".txt,.other").forEach(n=>{n.value="";n.classList.remove("bad")});armed=false;e.target.textContent="সব মুছুন";say("সব উত্তর মুছে ফেলা হয়েছে।");refresh()});
+refresh();
+</script>
+
+</body>
+</html>
