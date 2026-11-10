@@ -6,7 +6,35 @@
 <meta name="robots" content="noindex, nofollow">
 <title>The Shadow Brand Discovery</title>
 <link rel="icon" href="/the-shadow/business-aid-logo.webp">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Explicit, contained questionnaire stages */
+.screen{display:grid;gap:22px;min-width:0;background:transparent;border:0;border-radius:0;padding:0}
+.screen[hidden]{display:none!important}
+.intro-start,.review-panel,.success-panel,.next-links{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:clamp(18px,4vw,30px);display:grid;gap:15px}
+.intro-start{grid-template-columns:minmax(0,1fr) auto;align-items:center;border:2px solid var(--brass)}
+.intro-start h2,.review-panel h2,.next-links h2{margin:0}
+.start-button{font-size:16px;white-space:nowrap;padding:12px 20px}
+.review-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.review-stats>div{display:grid;gap:3px;padding:14px;border:1px solid var(--rule);border-radius:6px;background:var(--chip)}
+.review-stats strong{font-family:var(--f-mono);font-size:22px;color:var(--navy);font-variant-numeric:tabular-nums}
+.review-stats span{font-size:13px;color:var(--muted)}
+.submit-note{padding:12px 14px;border-left:3px solid var(--brass);background:var(--brass-soft);font-size:14px}
+.validation-alert{padding:10px 13px;border:1px solid var(--err);border-radius:6px;color:var(--err);background:var(--sheet);font-size:14px}
+.final-actions{margin-top:4px}
+.success-panel{justify-items:start;text-align:left;border:2px solid var(--brass);padding-block:clamp(24px,5vw,42px)}
+.success-mark{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--ok-soft);color:var(--ok);font-size:30px;font-weight:700}
+.success-panel h1{font-size:clamp(32px,6vw,46px)}
+.success-panel .lede{font-size:16px}
+.success-meta{display:flex;gap:8px 12px;align-items:baseline;flex-wrap:wrap;color:var(--muted);font-size:13px}
+.success-meta strong{font-family:var(--f-mono);font-size:18px;color:var(--navy)}
+.link-cards{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+a.secondary-link{display:inline-flex;align-items:center;min-height:42px;padding:9px 14px;border-radius:6px;border:1px solid var(--rule);background:var(--chip);color:var(--navy);font-weight:600;text-decoration:none}
+a.secondary-link:hover{border-color:var(--brass);background:var(--brass-soft)}
+#submitScreen .brandbar,#successScreen .brandbar{padding-bottom:4px}
+#successScreen footer{padding:10px 0 18px}
+@media(max-width:560px){.intro-start{grid-template-columns:1fr}.start-button{width:100%;justify-content:center}.review-stats{grid-template-columns:1fr 1fr}.final-actions{display:grid;grid-template-columns:1fr 1fr}.final-actions #submitBtn{grid-column:1/-1;grid-row:1}.final-actions #backToQuestions{grid-column:1}.final-actions #resetBtn{grid-column:2}.link-cards{display:grid}.link-cards>*{width:100%;justify-content:center}.success-panel{gap:12px}}
+
+</style>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Hind+Siliguri:wght@400;500;600;700&display=swap">
@@ -143,77 +171,140 @@ footer .sel{user-select:all}
 </style>
 </head>
 <body>
-
-
-<div class="wrap">
-<div class="brandbar"><a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" aria-label="Business Aid ওয়েবসাইট"><img src="/the-shadow/business-aid-logo.webp" alt="Business Aid — Where business gets better"></a><span>Prepared for <b style="color:var(--ink)">The Shadow</b></span></div>
-
-<header>
-  <div class="eyebrow">Brand Discovery · The Shadow · Banani, Dhaka</div>
-  <h1>The Shadow<small>ব্র্যান্ড ডিসকভারি ফর্ম</small></h1>
-  <p class="lede">The Shadow-এর ব্র্যান্ড, লোগো, সোশ্যাল মিডিয়া, ওয়েবসাইট আর পুরো মার্কেটিং প্ল্যান বানানোর আগে আপনাদের ভাবনাগুলো জানতে চাই। প্রথম অংশটা সবচেয়ে গুরুত্বপূর্ণ: কেন এই ব্র্যান্ড, কার গল্প, কে মুখ, কী বলবে। বেশিরভাগ প্রশ্নে অপশন আছে, শুধু টিক দিন। না মিললে "অন্য কিছু" লাইনে লিখুন।</p>
-  <div class="intro-grid">
-    <div><b>সময় লাগবে</b><span>৩০–৩৫ মিনিট। মাঝপথে বন্ধ করলেও এই ব্রাউজারে উত্তর সেভ থাকবে।</span></div>
-    <div><b>কবে জমা দেবেন</b><span>বৃহস্পতিবার, ১২ নভেম্বর রাতের মধ্যে, যাতে শনিবারের মিটিংয়ে তৈরি প্ল্যান নিয়ে বসতে পারি।</span></div>
-    <div><b>নিশ্চিত না হলে</b><span><span class="sample">আমাদের সাজেশন</span> চিহ্নিত অপশনটা নিন। শনিবার একসাথে চূড়ান্ত করব।</span></div>
-    <div><b>শেষে</b><span>একদম নিচে "জমা দিন" চাপুন। উত্তর সরাসরি Business Aid টিমের কাছে পৌঁছাবে।</span></div>
-  </div>
-  <div class="phases" aria-label="কাজের ধাপ"><a href="#roadmap"><span>01</span>Discovery</a><a href="#roadmap"><span>02</span>Brand Strategy</a><a href="#roadmap"><span>03</span>Visual Identity</a><a href="#roadmap"><span>04</span>Social &amp; Google</a><a href="#roadmap"><span>05</span>Website</a><a href="#roadmap"><span>06</span>Business Profile</a><a href="#roadmap"><span>07</span>Story &amp; Video</a><a href="#roadmap"><span>08</span>Campaigns</a><a href="#roadmap"><span>09</span>Loyalty</a><a href="#roadmap"><span>10</span>Measure</a></div>
-</header>
-
-<div class="sticky" role="region" aria-label="প্রশ্নপত্রের অগ্রগতি ও নেভিগেশন">
-  <div class="sticky-head">
-    <div class="current-segment">
-      <span class="sticky-kicker">বর্তমান অংশ · <span id="segmentCounter">০১ / ১৪</span></span>
-      <strong id="currentSegment">প্রথম অংশ প্রস্তুত হচ্ছে…</strong>
-      <span id="segmentAnswerCount">এই অংশে ০ / ০টি উত্তর</span>
+<div class="wrap" id="app">
+  <!-- Stage 1: Intro -->
+  <section class="screen" id="introScreen" data-screen="intro" aria-labelledby="introTitle">
+    <div class="brandbar">
+      <a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" aria-label="Business Aid ওয়েবসাইট">
+        <img src="/the-shadow/business-aid-logo.webp" alt="Business Aid — Where business gets better">
+      </a>
+      <span>Prepared for <b style="color:var(--ink)">The Shadow</b></span>
     </div>
-    <div class="overall-progress"><strong id="pc">০ / ৭৯</strong><span>মোট উত্তর সম্পন্ন</span></div>
-  </div>
-  <div class="sticky-bottom">
-    <div class="bar" role="progressbar" aria-label="মোট প্রশ্নের উত্তর" aria-valuemin="0" aria-valuemax="79" aria-valuenow="0"><i id="pb"></i></div>
-    <div class="sticky-nav">
-      <button type="button" id="prevSegment" disabled>← পূর্ববর্তী</button>
-      <button type="button" class="primary" id="nextSegment">পরবর্তী অংশ →</button>
+    <header>
+      <div class="eyebrow">Brand Discovery · The Shadow · Banani, Dhaka</div>
+      <h1 id="introTitle">The Shadow<small>ব্র্যান্ড ডিসকভারি ফর্ম</small></h1>
+      <p class="lede">The Shadow-এর ব্র্যান্ড, লোগো, সোশ্যাল মিডিয়া, ওয়েবসাইট আর পুরো মার্কেটিং প্ল্যান বানানোর আগে আপনাদের ভাবনাগুলো জানতে চাই। বেশিরভাগ প্রশ্নে অপশন আছে—শুধু টিক দিন। অপশনের সঙ্গে না মিললে “অন্য কিছু” লাইনে নিজের মতো লিখুন।</p>
+      <div class="intro-grid">
+        <div><b>সময় লাগবে</b><span>৩০–৩৫ মিনিট। মাঝপথে বন্ধ করলেও এই ব্রাউজারে উত্তর সেভ থাকবে।</span></div>
+        <div><b>প্রশ্নের বিন্যাস</b><span>মোট ৭৯টি প্রশ্ন, ১৪টি ছোট ছোট অংশে সাজানো। প্রতিটি অংশে Previous ও Next দিয়ে চলতে পারবেন।</span></div>
+        <div><b>নিশ্চিত না হলে</b><span><span class="sample">আমাদের সাজেশন</span> চিহ্নিত অপশনটি বেছে নিতে পারেন। শনিবার একসাথে চূড়ান্ত করব।</span></div>
+        <div><b>জমা দেওয়া</b><span>শেষ অংশের পর আলাদা Submit পেজ আসবে। সফলভাবে জমা হলে নিশ্চিতকরণ ও যোগাযোগের লিংক দেখানো হবে।</span></div>
+      </div>
+    </header>
+    <section class="intro-start" aria-labelledby="startHeading">
+      <div>
+        <span class="eyebrow">আপনার মতামতই পরবর্তী পদক্ষেপ</span>
+        <h2 id="startHeading">শুরু করতে প্রস্তুত?</h2>
+        <p class="sec-why">আপনারা সব প্রশ্নের উত্তর একবারে না দিলেও চলবে। উত্তর এই ডিভাইসের ব্রাউজারে স্বয়ংক্রিয়ভাবে সেভ হবে, তাই পরে ফিরে এসে চালিয়ে যেতে পারবেন।</p>
+        <p id="resumeMessage" class="muted" aria-live="polite"></p>
+      </div>
+      <button type="button" class="primary start-button" id="startBtn">শুরু করুন →</button>
+    </section>
+    <footer>
+      <span><a href="https://thebizaid.com" target="_blank" rel="noopener">thebizaid.com</a> · Gulshan, Dhaka · <a href="mailto:info@thebizaid.com">info@thebizaid.com</a> · <a href="https://wa.me/8801711293197" target="_blank" rel="noopener">WhatsApp</a></span>
+      <span>এই ফর্মের তথ্য শুধু The Shadow-এর ব্র্যান্ড প্ল্যানিংয়ে ব্যবহার হবে।</span>
+    </footer>
+  </section>
+
+  <!-- Stage 2: One questionnaire segment at a time -->
+  <section class="screen" id="questionScreen" data-screen="questions" hidden aria-label="প্রশ্নপত্র">
+    <div class="brandbar">
+      <a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" aria-label="Business Aid ওয়েবসাইট"><img src="/the-shadow/business-aid-logo.webp" alt="Business Aid"></a>
+      <span><b style="color:var(--ink)">The Shadow</b> · Brand Discovery</span>
     </div>
-  </div>
-</div>
+    <div class="sticky" role="region" aria-label="প্রশ্নপত্রের অগ্রগতি ও নেভিগেশন">
+      <div class="sticky-head">
+        <div class="current-segment">
+          <span class="sticky-kicker">বর্তমান অংশ · <span id="segmentCounter">০১ / ১৪</span></span>
+          <strong id="currentSegment">প্রথম অংশ প্রস্তুত হচ্ছে…</strong>
+          <span id="segmentAnswerCount">এই অংশে ০ / ০টি উত্তর</span>
+        </div>
+        <div class="overall-progress"><strong id="pc">০ / ৭৯</strong><span>মোট উত্তর সম্পন্ন</span></div>
+      </div>
+      <div class="sticky-bottom">
+        <div class="bar" role="progressbar" aria-label="মোট প্রশ্নের উত্তর" aria-valuemin="0" aria-valuemax="79" aria-valuenow="0"><i id="pb"></i></div>
+        <div class="sticky-nav">
+          <button type="button" id="prevSegment" disabled>← পূর্ববর্তী</button>
+          <button type="button" class="primary" id="nextSegment">পরবর্তী অংশ →</button>
+        </div>
+      </div>
+    </div>
+    <p id="questionAlert" class="validation-alert" role="status" aria-live="polite" hidden></p>
+    <form id="form" class="wrap" novalidate>
+      <div class="hp" aria-hidden="true"><label>Website<input type="text" id="hp_website" tabindex="-1" autocomplete="off"></label></div>
+    </form>
+  </section>
 
-<form id="form" class="wrap" novalidate>
-  <div class="hp" aria-hidden="true"><label>Website<input type="text" id="hp_website" tabindex="-1" autocomplete="off"></label></div>
-</form>
+  <!-- Stage 3: Final submit page -->
+  <section class="screen" id="submitScreen" data-screen="submit" hidden aria-labelledby="submitHeading">
+    <div class="brandbar">
+      <a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" aria-label="Business Aid ওয়েবসাইট"><img src="/the-shadow/business-aid-logo.webp" alt="Business Aid"></a>
+      <span><b style="color:var(--ink)">The Shadow</b> · শেষ ধাপ</span>
+    </div>
+    <section class="review-panel">
+      <span class="eyebrow">শেষ ধাপ · Submission</span>
+      <h2 id="submitHeading" tabindex="-1"><span class="n">✓</span>আপনার উত্তর জমা দিন</h2>
+      <p class="sec-why">আপনি ১৪টি অংশের সবগুলো দেখে শেষ করেছেন। জমা দেওয়ার আগে চাইলে আগের অংশে ফিরে উত্তর পরিবর্তন করতে পারবেন। সব প্রশ্নের উত্তর বাধ্যতামূলক নয়—শুধু ফর্মে চিহ্নিত প্রয়োজনীয় তথ্য দিতে হবে।</p>
+      <div class="review-stats">
+        <div><strong id="reviewAnswerCount">০ / ৭৯</strong><span>উত্তর দেওয়া হয়েছে</span></div>
+        <div><strong id="reviewSegmentCount">১৪ / ১৪</strong><span>মোট অংশ</span></div>
+      </div>
+      <div class="submit-note"><b>জমা দেওয়ার পর:</b> আপনার উত্তর Business Aid-এর টিমের response sheet-এ সংরক্ষিত হবে। সফল হলে একটি নিশ্চিতকরণ পেজ দেখানো হবে।</div>
+      <div class="btnrow final-actions">
+        <button type="button" id="backToQuestions">← আগের অংশে ফিরুন</button>
+        <button type="button" class="primary" id="submitBtn">উত্তর জমা দিন →</button>
+        <button type="button" id="resetBtn">সব মুছুন</button>
+      </div>
+      <p id="msg" role="status" aria-live="polite"></p>
+      <div class="fallback" id="fallback" hidden>
+        <p class="sec-why">সার্ভারে পাঠানো যায়নি। নিচের বোতাম চেপে উত্তর কপি করুন, তারপর Business Aid-এর WhatsApp <b class="sel">+880 1711 293197</b> অথবা <b class="sel">info@thebizaid.com</b>-এ পাঠান। আপনি চাইলে আবারও জমা দেওয়ার চেষ্টা করতে পারবেন।</p>
+        <div class="btnrow"><button type="button" id="copyBtn">উত্তর কপি করুন</button></div>
+        <textarea id="out" readonly aria-label="আপনার উত্তরের সারাংশ"></textarea>
+      </div>
+    </section>
+  </section>
 
-<section id="send" aria-labelledby="sendh">
-  <h2 id="sendh"><span class="n">✓</span>জমা দিন</h2>
-  <p class="sec-why">সব প্রশ্নের উত্তর না দিলেও জমা দেওয়া যাবে। শুধু নাম আর যোগাযোগের নম্বর (৭.১, ৭.২) লাগবে।</p>
-  <div class="btnrow"><button type="button" class="primary" id="submitBtn">জমা দিন</button><button type="button" id="resetBtn">সব মুছুন</button></div>
-  <p id="msg" role="status" aria-live="polite"></p>
-  <div class="fallback" id="fallback" hidden>
-    <p class="sec-why">সার্ভারে পাঠানো যায়নি। নিচের বোতাম চেপে উত্তর কপি করুন, তারপর Business Aid-এর WhatsApp <b class="sel">+880 1711 293197</b> অথবা <b class="sel">info@thebizaid.com</b>-এ পাঠান।</p>
-    <div class="btnrow"><button type="button" id="copyBtn">উত্তর কপি করুন</button></div>
-    <textarea id="out" readonly aria-label="আপনার উত্তরের সারাংশ"></textarea>
-  </div>
-</section>
+  <!-- Stage 4: Confirmed completion -->
+  <section class="screen" id="successScreen" data-screen="success" hidden aria-labelledby="successHeading">
+    <div class="brandbar">
+      <a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" aria-label="Business Aid ওয়েবসাইট"><img src="/the-shadow/business-aid-logo.webp" alt="Business Aid"></a>
+      <span><b style="color:var(--ink)">The Shadow</b> · Brand Discovery</span>
+    </div>
+    <section class="success-panel" role="status" aria-live="polite">
+      <div class="success-mark" aria-hidden="true">✓</div>
+      <span class="eyebrow">Submission complete</span>
+      <h1 id="successHeading">ধন্যবাদ!<small>আপনার উত্তর সফলভাবে জমা হয়েছে</small></h1>
+      <p class="lede">আপনার দেওয়া তথ্য Business Aid টিমের কাছে পৌঁছেছে। আমরা উত্তরগুলো পর্যালোচনা করে The Shadow-এর ব্র্যান্ড পরিকল্পনার পরবর্তী ধাপ প্রস্তুত করব।</p>
+      <div class="success-meta"><strong id="successAnswerCount">০ / ৭৯</strong><span>টি প্রশ্নের উত্তর সংরক্ষিত হয়েছে</span><span id="successSubmittedAt"></span></div>
+    </section>
+    <section class="next-links" aria-labelledby="nextLinksHeading">
+      <h2 id="nextLinksHeading">এখন কোথায় যাবেন?</h2>
+      <p class="sec-why">Business Aid-এর সঙ্গে যোগাযোগ বা আমাদের কাজ সম্পর্কে জানতে নিচের লিংকগুলো ব্যবহার করুন।</p>
+      <div class="link-cards">
+        <a class="cta" href="https://thebizaid.com" target="_blank" rel="noopener">Business Aid ওয়েবসাইট ভিজিট করুন ↗</a>
+        <a class="secondary-link" href="https://wa.me/8801711293197" target="_blank" rel="noopener">WhatsApp-এ যোগাযোগ করুন ↗</a>
+        <a class="secondary-link" href="mailto:info@thebizaid.com">ইমেইল করুন · info@thebizaid.com</a>
+      </div>
+    </section>
 
-<section id="roadmap" aria-labelledby="rmh">
-  <h2 id="rmh"><span class="n">→</span>এরপর কী হবে: ৩৬০° ব্র্যান্ডিং ও মার্কেটিং রোডম্যাপ</h2>
-  <p class="sec-why">আপনাদের উত্তর থেকে আমরা এই ১০টা ধাপ সাজাব। প্রতিটা ধাপে আমরা কী করব, আপনারা কী হাতে পাবেন, আর আপনাদের কাছ থেকে কী লাগবে, সব এখানে দেওয়া আছে। সময়সূচি আনুমানিক, শনিবার চূড়ান্ত হবে।</p>
-  <div class="rm" id="rm"></div>
-</section>
+    <section id="roadmap" aria-labelledby="rmh">
+      <h2 id="rmh"><span class="n">→</span>এরপর কী হবে: ৩৬০° ব্র্যান্ডিং ও মার্কেটিং রোডম্যাপ</h2>
+      <p class="sec-why">আপনাদের উত্তর থেকে আমরা এই ১০টা ধাপ সাজাব। প্রতিটা ধাপে আমরা কী করব, আপনারা কী হাতে পাবেন, আর আপনাদের কাছ থেকে কী লাগবে, সব এখানে দেওয়া আছে। সময়সূচি আনুমানিক, শনিবার চূড়ান্ত হবে।</p>
+      <div class="rm" id="rm"></div>
+    </section>
 
-<section class="about" aria-labelledby="abouth">
-  <h2 id="abouth"><span class="n">BA</span>Business Aid সম্পর্কে</h2>
-  <p class="sec-why" style="color:var(--ink)">Business Aid ঢাকাভিত্তিক গ্রোথ ও মার্কেটিং পার্টনার। ব্র্যান্ড স্ট্র্যাটেজি থেকে কনটেন্ট, পেইড মিডিয়া আর কাস্টমার ধরে রাখা পর্যন্ত, একটা ব্যবসার পুরো যাত্রায় আমরা পাশে থাকি।</p>
-  <div class="svc"><span>Business Strategy</span><span>Content Creation</span><span>Media Buying</span><span>SEO &amp; AEO</span><span>E-commerce Growth</span><span>Legal Aid</span><span>Tax &amp; Compliance</span></div>
-  <p class="sec-why">আমাদের কাজ, ক্লায়েন্ট আর সার্ভিস সম্পর্কে বিস্তারিত জানতে আমাদের ওয়েবসাইট ভিজিট করুন।</p>
-  <a class="cta" href="https://thebizaid.com" target="_blank" rel="noopener">thebizaid.com ভিজিট করুন →</a>
-</section>
-
-<footer>
-  <a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" style="justify-self:center" aria-label="Business Aid ওয়েবসাইট"><img src="/the-shadow/business-aid-logo.webp" alt="Business Aid"></a>
-  <span><a href="https://thebizaid.com" target="_blank" rel="noopener">thebizaid.com</a> · Gulshan, Dhaka · <span class="sel">info@thebizaid.com</span> · <span class="sel">+880 1711 293197</span></span>
-  <span>এই ফর্মের তথ্য শুধু The Shadow-এর ব্র্যান্ড প্ল্যানিংয়ে ব্যবহার হবে।</span>
-</footer>
+    <section class="about" aria-labelledby="abouth">
+      <h2 id="abouth"><span class="n">BA</span>Business Aid সম্পর্কে</h2>
+      <p class="sec-why" style="color:var(--ink)">Business Aid ঢাকাভিত্তিক গ্রোথ ও মার্কেটিং পার্টনার। ব্র্যান্ড স্ট্র্যাটেজি থেকে কনটেন্ট, পেইড মিডিয়া আর কাস্টমার ধরে রাখা পর্যন্ত, একটা ব্যবসার পুরো যাত্রায় আমরা পাশে থাকি।</p>
+      <div class="svc"><span>Business Strategy</span><span>Content Creation</span><span>Media Buying</span><span>SEO &amp; AEO</span><span>E-commerce Growth</span><span>Legal Aid</span><span>Tax &amp; Compliance</span></div>
+      <a class="cta" href="https://thebizaid.com" target="_blank" rel="noopener">thebizaid.com ভিজিট করুন →</a>
+    </section>
+    <footer>
+      <a class="logo" href="https://thebizaid.com" target="_blank" rel="noopener" style="justify-self:center" aria-label="Business Aid ওয়েবসাইট"><img src="/the-shadow/business-aid-logo.webp" alt="Business Aid"></a>
+      <span><a href="https://thebizaid.com" target="_blank" rel="noopener">thebizaid.com</a> · Gulshan, Dhaka · <a href="mailto:info@thebizaid.com">info@thebizaid.com</a> · <a href="https://wa.me/8801711293197" target="_blank" rel="noopener">+880 1711 293197</a></span>
+      <span>এই ফর্মের তথ্য শুধু The Shadow-এর ব্র্যান্ড প্ল্যানিংয়ে ব্যবহার হবে।</span>
+    </footer>
+  </section>
 </div>
 
 <script>
@@ -352,8 +443,10 @@ const ROAD=[
  ["Measure & Grow","চলমান",["মাসিক রিপোর্ট: লিড, স্টুডিও ভিজিট, অর্ডার","প্রতি অর্ডারের খরচ ও চ্যানেলভিত্তিক ফলাফল","বাজেট অপ্টিমাইজেশন","প্রতি ৩ মাসে স্ট্র্যাটেজি রিভিউ"],["মাসিক রিপোর্ট ও মিটিং"],["অর্ডার ও বিক্রির তথ্য শেয়ার"]]
 ];
 
-const KEY="shadow-discovery-v2";let st={};try{st=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){st={}}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const KEY="shadow-discovery-v2";
+let st={};
+try{st=JSON.parse(localStorage.getItem(KEY)||"{}");if(!st||typeof st!=="object"||Array.isArray(st))st={}}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
 const bn=n=>String(n).replace(/\d/g,d=>"০১২৩৪৫৬৭৮৯"[d]);
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
 const kinds={"1":"একটা বাছুন","m":"একাধিক বাছতে পারেন","t":"লিখুন","ta":"লিখুন","pal":"১–২টা বাছুন"};
@@ -394,7 +487,8 @@ PARTS.forEach(([pk,ptitle,pdesc,pri,secs])=>{
   });
 });
 
-document.getElementById("rm").innerHTML=ROAD.map(([name,when,doList,get,need],i)=>`
+const rm=document.getElementById("rm");
+if(rm)rm.innerHTML=ROAD.map(([name,when,doList,get,need],i)=>`
  <div class="ph"><div class="no">${String(i+1).padStart(2,"0")}</div><div>
   <h4>${esc(name)}</h4><div class="when">${esc(when)}</div>
   <div class="cols">
@@ -412,8 +506,13 @@ function answerOf(q){
 function summary(){const L=["THE SHADOW · Brand Discovery","জমার সময়: "+new Date().toLocaleString(),""];let cur="";
   QS.forEach(q=>{if(q.sec!==cur){cur=q.sec;L.push("","■ "+cur)}L.push(q.id+" "+q.t+": "+(answerOf(q)||"—"))});return L.join("\n")}
 function answersObj(){const a={};QS.forEach(q=>{a[q.id]={q:q.t,a:answerOf(q)}});return a}
+function answeredCount(){return QS.filter(q=>answerOf(q)).length}
+function showScreen(name,scroll=true){
+  document.querySelectorAll("[data-screen]").forEach(el=>{el.hidden=el.dataset.screen!==name});
+  if(scroll){const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;window.scrollTo({top:0,behavior:reduceMotion?"auto":"smooth"})}
+}
 function refresh(){
-  const d=QS.filter(q=>answerOf(q)).length;
+  const d=answeredCount();
   const active=SEGMENTS[activeSegmentIndex];
   const segmentDone=active.questions.filter(q=>answerOf(q)).length;
   document.getElementById("pc").textContent=bn(d)+" / "+bn(QS.length);
@@ -425,64 +524,97 @@ function refresh(){
   document.querySelector(".bar").setAttribute("aria-valuenow",String(d));
   document.querySelector(".bar").setAttribute("aria-valuemax",String(QS.length));
   document.getElementById("prevSegment").disabled=activeSegmentIndex===0;
-  const next=document.getElementById("nextSegment");
-  next.textContent=activeSegmentIndex===SEGMENTS.length-1?"জমা দেওয়ার অংশে যান ↓":"পরবর্তী অংশ →";
+  document.getElementById("nextSegment").textContent=activeSegmentIndex===SEGMENTS.length-1?"শেষ ধাপ: জমা দিন →":"পরবর্তী অংশ →";
   document.getElementById("out").value=summary();
+  document.getElementById("reviewAnswerCount").textContent=bn(d)+" / "+bn(QS.length);
+  document.getElementById("reviewSegmentCount").textContent=bn(SEGMENTS.length)+" / "+bn(SEGMENTS.length);
+  document.getElementById("successAnswerCount").textContent=bn(d)+" / "+bn(QS.length);
+  const resume=document.getElementById("resumeMessage");
+  if(resume){
+    if(d>0){resume.textContent="আপনার আগে দেওয়া "+bn(d)+"টি উত্তরের খসড়া পাওয়া গেছে। শুরু করলে আগের অসম্পূর্ণ অংশ থেকে চালিয়ে যেতে পারবেন।";document.getElementById("startBtn").textContent="উত্তর চালিয়ে যান →"}
+    else{resume.textContent="প্রস্তুত হলে শুরু করুন।";document.getElementById("startBtn").textContent="শুরু করুন →"}
+  }
 }
 function goToSegment(index,scroll=true){
   activeSegmentIndex=Math.max(0,Math.min(index,SEGMENTS.length-1));
   SEGMENTS.forEach((segment,i)=>{segment.element.hidden=i!==activeSegmentIndex});
-  refresh();
+  st._currentSegment=activeSegmentIndex;save();refresh();
+  showScreen("questions",scroll);
   if(scroll){
     const heading=SEGMENTS[activeSegmentIndex].element.querySelector("h2");
-    const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({top:Math.max(0,form.getBoundingClientRect().top+window.scrollY-145),behavior:reduceMotion?"auto":"smooth"});
     if(heading)heading.focus({preventScroll:true});
   }
 }
+function showReview(){
+  refresh();
+  showScreen("submit");
+  document.getElementById("submitHeading").focus?.({preventScroll:true});
+}
+function showSuccess(){
+  showScreen("success");
+  const stamp=st._submittedAt?new Date(st._submittedAt):new Date();
+  document.getElementById("successSubmittedAt").textContent="জমার সময়: "+stamp.toLocaleString();
+}
 const firstIncompleteSegment=SEGMENTS.findIndex(segment=>segment.questions.some(q=>!answerOf(q)));
-activeSegmentIndex=firstIncompleteSegment<0?0:firstIncompleteSegment;
-goToSegment(activeSegmentIndex,false);
+const savedSegment=Number.isInteger(st._currentSegment)?st._currentSegment:-1;
+activeSegmentIndex=savedSegment>=0&&savedSegment<SEGMENTS.length?savedSegment:(firstIncompleteSegment<0?0:firstIncompleteSegment);
+SEGMENTS.forEach((segment,i)=>{segment.element.hidden=i!==activeSegmentIndex});
+refresh();
+if(st._submittedAt){showSuccess()}else{showScreen("intro",false)}
+
+document.getElementById("startBtn").addEventListener("click",()=>goToSegment(activeSegmentIndex));
 document.getElementById("prevSegment").addEventListener("click",()=>goToSegment(activeSegmentIndex-1));
 document.getElementById("nextSegment").addEventListener("click",()=>{
   if(activeSegmentIndex<SEGMENTS.length-1)goToSegment(activeSegmentIndex+1);
-  else {document.getElementById("send").scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});document.getElementById("submitBtn").focus({preventScroll:true})}
+  else showReview();
 });
+document.getElementById("backToQuestions").addEventListener("click",()=>goToSegment(SEGMENTS.length-1));
 form.addEventListener("change",e=>{const el=e.target;
   if(el.type==="radio"){form.querySelectorAll(`input[name="${el.name}"]`).forEach(r=>{st[r.id]=r.checked})}
   else if(el.type==="checkbox"){st[el.id]=el.checked}else return;save();refresh()});
 form.addEventListener("input",e=>{const el=e.target;
   if(el.classList.contains("txt")){st[el.dataset.q]=el.value;el.classList.remove("bad")}
-  else if(el.classList.contains("other")){st[el.id]=el.value}else return;save();refresh()});
+  else if(el.classList.contains("other")){st[el.id]=el.value}else return;
+  const question=QS.find(q=>q.id===el.dataset.q);if(question&&question.req){const alert=document.getElementById("questionAlert");alert.hidden=true;alert.textContent=""}
+  save();refresh()});
 
 const msg=document.getElementById("msg"),btn=document.getElementById("submitBtn"),fb=document.getElementById("fallback");
 function say(t,c){msg.textContent=t;msg.className=c||""}
 btn.addEventListener("click",async()=>{
+  if(st._submittedAt){showSuccess();return}
   const missing=QS.filter(q=>q.req&&!answerOf(q));
   if(missing.length){
-    missing.forEach(q=>document.getElementById("f_"+q.id).classList.add("bad"));
+    missing.forEach(q=>{const field=document.getElementById("f_"+q.id);if(field)field.classList.add("bad")});
     const firstMissing=missing[0];
     const missingSegment=SEGMENTS.findIndex(segment=>segment.questions.includes(firstMissing));
     if(missingSegment>=0)goToSegment(missingSegment);
-    document.getElementById("f_"+firstMissing.id).focus({preventScroll:true});
-    say("নাম আর যোগাযোগের নম্বর (৭.১, ৭.২) দিন, তারপর জমা দিন।","err");return
+    const alert=document.getElementById("questionAlert");alert.textContent="জমা দেওয়ার জন্য প্রয়োজনীয় তথ্য পূরণ করুন। লাল চিহ্নিত প্রশ্নগুলো সম্পূর্ণ করে আবার শেষ ধাপে যান।";alert.hidden=false;
+    const target=document.getElementById("f_"+firstMissing.id);if(target)target.focus({preventScroll:true});
+    say("প্রয়োজনীয় তথ্যগুলো পূরণ করুন, তারপর আবার জমা দিন।","err");return
   }
-  btn.disabled=true;say("জমা হচ্ছে…");
+  btn.disabled=true;document.getElementById("backToQuestions").disabled=true;document.getElementById("resetBtn").disabled=true;say("জমা হচ্ছে…");
   const payload={form:FORM_ID,submitted_at:new Date().toISOString(),website:document.getElementById("hp_website").value,answers:answersObj(),summary:summary()};
   try{
     const r=await fetch(SUBMIT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
     const j=await r.json().catch(()=>null);if(!r.ok||!j||!j.ok)throw new Error("bad response");
-    say("ধন্যবাদ! আপনার উত্তর Business Aid টিমের কাছে পৌঁছেছে। শনিবার দেখা হচ্ছে।","ok");fb.hidden=true;btn.textContent="জমা হয়েছে";
-  }catch(err){btn.disabled=false;say("এই মুহূর্তে সার্ভারে পাঠানো যায়নি। নিচের বিকল্প পদ্ধতিতে পাঠান।","err");fb.hidden=false;refresh()}
+    st._submittedAt=new Date().toISOString();save();showSuccess();
+  }catch(err){
+    btn.disabled=false;document.getElementById("backToQuestions").disabled=false;document.getElementById("resetBtn").disabled=false;
+    say("এই মুহূর্তে সার্ভারে পাঠানো যায়নি। ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন অথবা বিকল্প পদ্ধতি ব্যবহার করুন।","err");fb.hidden=false;refresh();
+  }
 });
 document.getElementById("copyBtn").addEventListener("click",()=>{const text=summary();const o=document.getElementById("out");
-  const sel=()=>{o.focus();o.select();say("বক্সের লেখা সিলেক্ট করা হয়েছে, Ctrl+C / কপি চাপুন।","err")};
+  const sel=()=>{o.focus();o.select();say("বক্সের লেখা সিলেক্ট করা হয়েছে, কপি চাপুন।","err")};
   try{navigator.clipboard.writeText(text).then(()=>say("কপি হয়েছে। WhatsApp বা ইমেইলে পেস্ট করে পাঠান।","ok")).catch(sel)}catch(e){sel()}});
 let armed=false;document.getElementById("resetBtn").addEventListener("click",e=>{
   if(!armed){armed=true;e.target.textContent="নিশ্চিত? আবার চাপুন";setTimeout(()=>{armed=false;e.target.textContent="সব মুছুন"},3000);return}
   st={};save();form.querySelectorAll("input[type=checkbox],input[type=radio]").forEach(c=>c.checked=false);
-  form.querySelectorAll(".txt,.other").forEach(n=>{n.value="";n.classList.remove("bad")});armed=false;e.target.textContent="সব মুছুন";say("সব উত্তর মুছে ফেলা হয়েছে।");refresh()});
-refresh();
+  form.querySelectorAll(".txt,.other").forEach(n=>{n.value="";n.classList.remove("bad")});
+  armed=false;e.target.textContent="সব মুছুন";fb.hidden=true;btn.disabled=false;document.getElementById("backToQuestions").disabled=false;document.getElementById("resetBtn").disabled=false;
+  const alert=document.getElementById("questionAlert");alert.hidden=true;alert.textContent="";say("সব উত্তর মুছে ফেলা হয়েছে।");
+  activeSegmentIndex=0;goToSegment(0);
+});
+
 </script>
 
 </body>

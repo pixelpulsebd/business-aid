@@ -4,11 +4,14 @@ The questionnaire is served from **https://brief.thebizaid.com/the-shadow** by t
 
 ## Questionnaire experience
 
-- The 79 questions are split into 14 short, topic-based segments using the existing question groups.
-- A sticky progress panel stays visible while the respondent scrolls. It shows the current segment, segment position, answers completed in that segment, and total answered out of 79.
-- Previous and Next controls stay available in the sticky panel.
-- Answers continue to autosave in the respondent's browser, so they can leave and return on the same browser.
-- The form can be submitted with unanswered optional questions; the existing required questions remain enforced.
+The questionnaire uses a contained, four-stage flow so respondents always know where they are:
+
+1. **Intro** — explains the purpose, estimated time, autosave behavior, and the Start action. The questions are not shown until the respondent clicks **Start**.
+2. **Segmented Q/A** — displays one of the 14 topic-based segments at a time. The sticky progress panel shows the current segment name and position, answered count for that segment, and overall answers completed out of 79. Previous and Next controls keep navigation inside the questionnaire.
+3. **Final submit page** — appears after Next on the last segment. It shows the overall answer count, allows the respondent to return to the final segment, and provides the explicit Submit action. Required questions are validated before sending.
+4. **Submission complete** — appears only after the API confirms that the submission was saved. It confirms success and provides links to the Business Aid website, WhatsApp, and email.
+
+Answers autosave in the respondent's browser, including the current segment, so they can leave and resume on the same browser. Optional questions can remain unanswered; the existing required questions remain enforced. If submission fails, the final page stays available for retry and offers a copyable response summary.
 
 ## Deployment
 
@@ -36,7 +39,9 @@ No separate spreadsheet, Google Apps Script deployment, webhook URL, or addition
 
 - `https://thebizaid.com` still serves the main Business Aid website.
 - `https://brief.thebizaid.com/the-shadow` serves the questionnaire.
-- The 14 segments navigate forward and backward without losing answers.
-- The sticky status shows the current segment and answered count out of 79.
+- The intro is the only visible stage on first load; clicking Start opens the first saved/current segment.
+- The 14 segments navigate forward and backward without losing answers, and the sticky status shows current segment and answered count out of 79.
+- Next on the final segment opens the final submit page; Previous returns to the final segment.
+- The success page appears only after the API confirms a successful save and exposes the website, WhatsApp, and email links.
 - A test submission creates a row in the `the-shadow` tab in the same spreadsheet file as `Enquiries`.
 - Confirm that the existing `Enquiries` tab continues to receive main-site enquiries normally.
